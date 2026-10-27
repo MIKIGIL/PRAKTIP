@@ -1,0 +1,11 @@
+options {
+	directory "/var/cache/bind";
+	recursion yes;
+	forwarders {1.1.1.1; 8.8.8.8; };
+	allow-query {127.0.0.1; 192.168.10.160/27; };
+	allow-transfer{ none; };
+	dnssec-validation auto;
+	check-names master ignore;
+	listen-on { any; };
+	listen-on-v6 { any; };
+};

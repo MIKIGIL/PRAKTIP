@@ -1,0 +1,14 @@
+;
+; Zona inversa 192.168.10.160/27
+;
+$TTL    604800
+@       IN      SOA     dns.praktip.net. root.praktip.net. (
+                        2       ; Serial
+                        604800  ; Refresh
+                        86400   ; Retry
+                        2419200 ; Expire
+                        604800 ) ; Negative Cache TTL
+;
+@       IN      NS      dns.praktip.net.
+161     IN      PTR     dns.praktip.net.
+162	IN	PTR	dns2.praktip.net.

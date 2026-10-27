@@ -1,0 +1,15 @@
+$TTL 604800
+@	IN	SOA	dns.praktip.net. admin.praktip.net. (
+				2		; Serial YYYYMMDDNN
+			 	3600		; Refresh
+				1800		; Retry
+				604800		; Expire
+				86400 )		; Negative Cache TTL
+;
+@		IN	NS	dns.praktip.net.
+;
+dns		IN	A	192.168.10.161	
+dns2		IN	A	192.168.10.162
+;
+router		IN	CNAME	dns
+dhcp		IN	CNAME	dns
