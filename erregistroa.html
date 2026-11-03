@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRAKTIP - Izena eman eta ordaindu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="goiburua" id="hasiera">
+    <a class="logoa" href="index.html">PRAKTIP</a>
+    <nav aria-label="Menu nagusia">
+      <ul class="menua">
+        <li><a href="index.html#zer" aria-current="page">Zer egiten dugu</a></li>
+        <li><a href="index.html#zeintzuk" aria-current="page">Zeintzuk gara</a></li>
+        <li><a href="zerbitzuak.html">Zerbitzuak</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#kontaktua" aria-current="page">Kontaktua</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-berdea" href="saioa.html">Hasi saioa</a>
+  </header>
+
+  <main>
+    <section class="zentratua">
+      <div class="txartela kutxa">
+        <h1>Izena eman eta ordaindu</h1>
+        <!-- Backend-ik ez dago: formularioak ez du daturik bidaltzen -->
+        <form class="formularioa" onsubmit="event.preventDefault()">
+          <div class="eremua"><label for="e-plana">Plana</label>
+            <select class="sarrera-eremua" id="e-plana" name="plana"><option>Ikasle</option><option>Irakasle</option><option>Zentro</option></select></div>
+          <div class="errenkada">
+            <div class="eremua"><label for="e-izena">Izena</label><input class="sarrera-eremua" id="e-izena" name="izena" type="text" autocomplete="name" required></div>
+            <div class="eremua"><label for="e-posta">Posta elektronikoa</label><input class="sarrera-eremua" id="e-posta" name="posta" type="email" autocomplete="email" required></div>
+            <div class="eremua"><label for="e-pasahitza">Pasahitza</label><input class="sarrera-eremua" id="e-pasahitza" name="pasahitza" type="password" autocomplete="new-password" required></div>
+          </div>
+          <fieldset>
+            <legend>Ordainketa</legend>
+            <div class="errenkada">
+              <div class="eremua" style="flex-basis: 100%"><label for="e-txartela">Txartelaren zenbakia</label><input class="sarrera-eremua" id="e-txartela" name="txartela" type="text" inputmode="numeric" autocomplete="cc-number" required></div>
+              <div class="eremua"><label for="e-data">Iraungitze-data</label><input class="sarrera-eremua" id="e-data" name="data" type="text" autocomplete="cc-exp" required></div>
+              <div class="eremua"><label for="e-cvc">CVC</label><input class="sarrera-eremua" id="e-cvc" name="cvc" type="text" inputmode="numeric" autocomplete="cc-csc" required></div>
+            </div>
+          </fieldset>
+          <p class="guztira"><span>Guztira</span><span>[PREZIOA]</span></p>
+          <button class="btn btn-berdea" type="submit">Ordaindu eta kontua sortu</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="oina">
+    <strong>PRAKTIP</strong>
+    <span>2MSS2 · Ikasenpresa · 2026</span>
+  </footer>
+</body>
+</html>
