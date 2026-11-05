@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRAKTIP - Hasi saioa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="goiburua" id="hasiera">
+    <a class="logoa" href="index.html">PRAKTIP</a>
+    <nav aria-label="Menu nagusia">
+      <ul class="menua">
+        <li><a href="index.html#zer" aria-current="page">Zer egiten dugu</a></li>
+        <li><a href="index.html#zeintzuk" aria-current="page">Zeintzuk gara</a></li>
+        <li><a href="zerbitzuak.html">Zerbitzuak</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#kontaktua" aria-current="page">Kontaktua</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-berdea" href="saioa.html">Hasi saioa</a>
+  </header>
+
+  <main>
+    <section class="zentratua">
+      <div class="txartela kutxa kutxa-estua">
+        <h1>Hasi saioa</h1>
+        <!-- Backend-ik ez dago: formularioak ez du daturik bidaltzen -->
+        <form class="formularioa" onsubmit="event.preventDefault()">
+          <div class="eremua"><label for="s-posta">Posta elektronikoa</label><input class="sarrera-eremua" id="s-posta" name="posta" type="email" autocomplete="email" required></div>
+          <div class="eremua"><label for="s-pasahitza">Pasahitza</label><input class="sarrera-eremua" id="s-pasahitza" name="pasahitza" type="password" autocomplete="current-password" required></div>
+          <button class="btn btn-berdea" type="submit">Hasi saioa</button>
+        </form>
+        <p>Ez duzu konturik? <a href="zerbitzuak.html">Aukeratu plan bat</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="oina">
+    <strong>PRAKTIP</strong>
+    <span>2MSS2 · Ikasenpresa · 2026</span>
+  </footer>
+</body>
+</html>
