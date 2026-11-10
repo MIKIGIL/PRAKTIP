@@ -78,8 +78,15 @@ a:hover { color: var(--tinta); }
 .txartela p { color: var(--grisa); }
 
 /* Iritziak (zerrenda mehea) */
-.iritziak { padding: 18px 48px; background: var(--menta); font-size: 14px; }
-.iritziak .sarea { gap: 24px; }
+.iritziak { padding: 18px 0; background: var(--menta); font-size: 14px; overflow: hidden; }
+.iritziak-karrusela { display: flex; width: max-content; animation: iritziak-mugitu 30s linear infinite; }
+.iritziak-karrusela .sarea { display: flex; flex-wrap: nowrap; gap: 48px; padding: 0 24px; }
+.iritziak-karrusela li { flex: 0 0 auto; white-space: nowrap; }
+.iritziak-karrusela:hover { animation-play-state: paused; }
+@keyframes iritziak-mugitu {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 
 /* Zer egiten dugu / Zeintzuk gara */
 .pausoa { margin-bottom: 4px; color: var(--berdea); font-weight: 800; }
@@ -141,7 +148,7 @@ legend { padding: 0; margin-bottom: 12px; font-size: 20px; font-weight: 800; }
 
 /* Mugikorra */
 @media (max-width: 700px) {
-  .goiburua, .atala, .iritziak, .oina { padding-left: 24px; padding-right: 24px; }
+  .goiburua, .atala, .oina { padding-left: 24px; padding-right: 24px; }
   .banner { padding: 80px 24px; }
   .atala { padding-top: 56px; padding-bottom: 56px; }
   .menua { gap: 16px; }
