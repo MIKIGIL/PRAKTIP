@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- Página «Blog» con filtro por categoría. -->
+<html lang="eu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PRAKTIP</title>
+  <!-- Tipografías de Google Fonts: Outfit (títulos) y Figtree (texto) -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Hoja de estilos única de la web -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<!-- Fondo fijo con degradados (decorativo) -->
+<div class="bg"></div>
+
+<!-- ============ CABECERA (barra fija, igual en todas las páginas) ============ -->
+<header class="nav">
+  <!-- Píldora izquierda: logo (icono de PRAKTIP) + menú principal + hamburguesa (móvil) -->
+  <div class="nb g">
+    <a class="logo" href="index.html" aria-label="PRAKTIP"><img class="logo-ic" src="img/icono.svg" alt="" width="43" height="32"><span>PRAKTIP</span></a>
+    <nav class="links" aria-label="Main"><a class="nl" href="index.html" data-i18n="home"></a><a class="nl" href="practicas.html" data-i18n="prac"></a><a class="nl" href="buscador.html" data-i18n="find"></a><a class="nl on" href="blog.html" aria-current="page" data-i18n="blog"></a></nav>
+    <button class="nl burger" id="burger" aria-expanded="false" aria-controls="dd" aria-label="Menu" data-ic="menu"></button>
+  </div>
+  <!-- Píldora derecha: acceso al login + selector de idioma EU/ES (main.js lo gestiona) -->
+  <div class="nb g r">
+    <a class="nl hm" href="login.html" data-i18n="login"></a>
+    <div class="sw" role="group" aria-label="Language"><button data-lang="eu">EU</button><button data-lang="es">ES</button></div>
+  </div>
+  <!-- Menú desplegable de móvil (oculto hasta pulsar la hamburguesa) -->
+  <nav class="dd g" id="dd" aria-label="Mobile" hidden><a class="nl" href="index.html" data-i18n="home"></a><a class="nl" href="practicas.html" data-i18n="prac"></a><a class="nl" href="buscador.html" data-i18n="find"></a><a class="nl on" href="blog.html" aria-current="page" data-i18n="blog"></a><a class="nl" href="login.html" data-i18n="login"></a></nav>
+</header>
+
+<main class="pg">
+<!-- Banner corto del blog -->
+<section class="hb short"><h1 data-i18n="blT"></h1><p class="lead" data-i18n="blS"></p></section>
+<!-- Filtro por categorías (#cats) y entradas (#posts): los pinta blog.js -->
+<section class="sec nopt"><div class="chips cat" id="cats"></div><div class="bl" id="posts"></div></section>
+</main>
+
+<!-- ============ PIE DE PÁGINA ============ -->
+<footer class="g">
+  <div class="fg">
+    <!-- Columna 1: logo y descripción -->
+    <div><a class="logo flogo" href="index.html" aria-label="PRAKTIP"><img class="logo-ic" src="img/icono.svg" alt="" width="43" height="32"><span>PRAKTIP</span></a><p data-i18n="fd"></p></div>
+    <!-- Columna 2: navegación -->
+    <div><b data-i18n="nv"></b><a href="index.html" data-i18n="home"></a><a href="practicas.html" data-i18n="prac"></a><a href="buscador.html" data-i18n="find"></a><a href="blog.html" data-i18n="blog"></a><a href="login.html" data-i18n="login"></a></div>
+    <!-- Columna 3: contacto (ejemplo) y selector de idioma -->
+    <div><b data-i18n="ct"></b><p>info@praktip.example<br><span data-i18n="ex"></span></p>
+      <div class="sw fsw" role="group" aria-label="Language"><button data-lang="eu">EU</button><button data-lang="es">ES</button></div></div>
+  </div>
+  <p class="c copy">© 2026 PRAKTIP. <span data-i18n="rt"></span> · <span data-i18n="ph"></span></p>
+</footer>
+
+<!-- Scripts (orden importante): datos → lógica común → resto de la página -->
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,2491 @@
+/* ==========================================================================
+   PRAKTIP · hoja de estilos única (todas las páginas)
+   Estructura: 1) base y componentes comunes, 2) tema claro y ajustes
+   responsive, 3) estilos de cada página, 4) NOVEDADES de esta versión
+   (icono, arreglo de botones, mapa Leaflet, fotos, ODS, análisis económico).
+   ========================================================================== */
+
+/* ==================================================================
+   VARIABLES Y BASE
+   ================================================================== */
+/* Variables de color y medidas globales (paleta azul/menta). Se redefinen más abajo para el tema claro. */
+:root {
+  --navy: #061a3a;
+  --elec: #2563ff;
+  --sky: #4cc3ff;
+  --mint: #2de2c4;
+  --glass: rgba(255, 255, 255, 0.09);
+  --g2: rgba(255, 255, 255, 0.17);
+  --bd: rgba(255, 255, 255, 0.24);
+  --tx: #f2f8ff;
+  --mu: #bcd0ec;
+  box-sizing: border-box;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Reset: box-sizing y sin márgenes por defecto. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Desplazamiento suave al pulsar enlaces ancla (#services, #book, #trial...). */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fuente base, color de texto y fondo; se evita el scroll horizontal. */
+body {
+  background: var(--navy);
+  color: var(--tx);
+  font:
+    16px/1.6 "Figtree",
+    system-ui,
+    sans-serif;
+  overflow-x: hidden;
+}
+
+/* Fondo fijo con degradados radiales (detrás de todo el contenido). */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60% 50% at 12% 8%, #1747c9, transparent 60%),
+    radial-gradient(50% 40% at 92% 30%, #0a7fb5, transparent 60%),
+    radial-gradient(45% 40% at 40% 100%, #0d9f95, transparent 60%), #061a3a;
+}
+
+/* Tipografía de títulos: Outfit. */
+h1,
+h2,
+h3,
+.logo {
+  font-family: "Outfit", system-ui, sans-serif;
+  line-height: 1.12;
+}
+
+/* Margen de scroll para que el menú fijo no tape los anclajes. */
+[id] {
+  scroll-margin-top: 120px;
+}
+
+/* Los botones heredan fuente y color del texto. */
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Anillo de foco visible (accesibilidad con teclado). */
+:focus-visible {
+  outline: 3px solid var(--mint);
+  outline-offset: 2px;
+}
+
+/* ==================================================================
+   COMPONENTES COMUNES (cristal, botones)
+   ================================================================== */
+/* «Glass»: tarjeta de cristal translúcido con desenfoque. Se usa en casi todas las tarjetas. */
+.g {
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--bd);
+  border-radius: 24px;
+  box-shadow:
+    0 12px 40px rgba(2, 12, 40, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+/* Tarjeta que se eleva al pasar el ratón: transición. */
+.lift {
+  transition:
+    transform 0.3s,
+    background 0.3s;
+}
+
+/* Estado hover de .lift: sube 6px y se aclara. */
+.lift:hover {
+  transform: translateY(-6px);
+  background: var(--g2);
+}
+
+/* Botón principal: píldora con degradado azul. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.7rem;
+  border-radius: 99px;
+  border: 1px solid var(--bd);
+  font:
+    700 1rem "Outfit",
+    sans-serif;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 255, 0.9),
+    rgba(76, 195, 255, 0.55)
+  );
+  box-shadow:
+    0 8px 24px rgba(37, 99, 255, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transition: 0.25s;
+}
+
+/* Hover del botón: se eleva y aumenta la sombra. */
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 14px 30px rgba(37, 99, 255, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Botón desactivado. */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Variante verde-menta del botón. */
+.btn.mint {
+  background: linear-gradient(
+    135deg,
+    rgba(45, 226, 196, 0.85),
+    rgba(37, 99, 255, 0.6)
+  );
+}
+
+/* Variante «fantasma» (fondo translúcido). */
+.btn.ghost {
+  background: var(--glass);
+  box-shadow: none;
+}
+
+/* Botón grande (banners). */
+.btn.big {
+  padding: 1.05rem 2.2rem;
+  font-size: 1.15rem;
+}
+
+/* ==================================================================
+   NAVEGACIÓN SUPERIOR
+   ================================================================== */
+/* Barra de navegación fija arriba (respeta el notch en móviles). */
+.nav {
+  position: fixed;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 16px;
+  max-width: 1320px;
+  margin: auto;
+}
+
+/* Cada «píldora» de cristal de la barra (menú izquierdo y derecho). */
+.nb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 10px;
+  border-radius: 99px;
+}
+
+/* La píldora derecha (login + idioma) se alinea a la derecha. */
+.nb.r {
+  margin-left: auto;
+}
+
+/* Logo de cabecera: icono + texto PRAKTIP. */
+.logo {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+  padding: 0 10px 0 6px;
+}
+
+/* Enlace de navegación (píldora). */
+.nl {
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  background: none;
+  border: 0;
+  color: var(--mu);
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+/* Hover de enlace de navegación. */
+.nl:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Enlace de la página actual (resaltado). */
+.nl.on {
+  color: #fff;
+  background: rgba(76, 195, 255, 0.26);
+  box-shadow: inset 0 0 0 1px var(--sky);
+}
+
+/* Selector de idioma EU/ES (contenedor). */
+.sw {
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 99px;
+  padding: 3px;
+}
+
+/* Botón de idioma. */
+.sw button {
+  border: 0;
+  background: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 99px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--mu);
+}
+
+/* Idioma activo. */
+.sw button[aria-pressed="true"] {
+  background: #fff;
+  color: #0a2c63;
+}
+
+/* El botón hamburguesa y el menú desplegable están ocultos en escritorio. */
+.burger,
+.dd {
+  display: none;
+}
+
+/* Móvil/tablet: se oculta el menú horizontal y se muestra la hamburguesa + desplegable. */
+@media (max-width: 1020px) {
+  .links,
+  .hm {
+    display: none;
+  }
+  .burger {
+    display: block;
+  }
+  .dd {
+    display: grid;
+    position: absolute;
+    top: 70px;
+    left: 16px;
+    right: 16px;
+    padding: 12px;
+    gap: 4px;
+    background: rgba(8, 32, 78, 0.85);
+  }
+  .dd .nl {
+    text-align: left;
+    padding: 0.8rem 1rem;
+  }
+}
+
+/* ==================================================================
+   LAYOUT GENERAL Y TIPOGRAFÍA DE SECCIONES
+   ================================================================== */
+/* Animación de aparición de cada página. */
+.pg {
+  animation: fade 0.45s;
+}
+
+/* Animación: aparecer (opacidad). */
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Sección genérica centrada con ancho máximo. */
+.sec {
+  max-width: 1200px;
+  margin: auto;
+  padding: 70px 20px;
+}
+
+/* Título de sección. */
+.sec h2 {
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  margin-bottom: 12px;
+}
+
+/* Párrafo destacado bajo los títulos. */
+.lead {
+  color: var(--mu);
+  font-size: 1.15rem;
+  max-width: 56ch;
+}
+
+/* Texto centrado. */
+.c {
+  text-align: center;
+}
+
+/* Párrafo destacado centrado. */
+.c .lead {
+  margin: auto;
+}
+
+/* Etiqueta «contenido de demostración / datos hipotéticos» (borde discontinuo). */
+.tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 99px;
+  border: 1px dashed var(--sky);
+  color: var(--sky);
+  margin-bottom: 10px;
+}
+
+/* ==================================================================
+   BANNER DE LA LANDING (HERO)
+   ================================================================== */
+/* Banner principal de la landing: 2 columnas (texto + arte). */
+.hero {
+  min-height: 78vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 30px;
+  padding: 130px 24px 30px;
+  max-width: 1250px;
+  margin: auto;
+}
+
+/* Título principal del banner. */
+.hero h1 {
+  font-size: clamp(2.5rem, 5.6vw, 4.7rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+/* Subtítulo del banner. */
+.hero .lead {
+  margin-bottom: 30px;
+}
+
+/* Animación de entrada del texto del banner. */
+.hero .ht {
+  animation: rise 0.9s both;
+}
+
+/* Animación: subir y aparecer. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
+
+/* Contenedor del dibujo animado del banner (nodos conectados). */
+.art {
+  position: relative;
+  height: 420px;
+}
+
+/* Capa SVG con las líneas que unen los nodos. */
+.art svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Líneas discontinuas animadas. */
+.art line {
+  stroke: var(--sky);
+  stroke-width: 2;
+  stroke-dasharray: 6 8;
+  animation: dash 1.6s linear infinite;
+}
+
+/* Animación: desplazar el trazo discontinuo. */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+/* Nodo flotante de cristal (icono dentro). */
+.node {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 28px;
+  transform: translate(-50%, -50%);
+  animation: fl 6s ease-in-out infinite;
+  color: var(--sky);
+}
+
+/* Nodo central, circular y más grande (aquí va el icono de PRAKTIP). */
+.node.m {
+  width: 124px;
+  height: 124px;
+  border-radius: 50%;
+  color: var(--mint);
+  box-shadow:
+    0 0 70px rgba(45, 226, 196, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Animación: flotar arriba y abajo. */
+@keyframes fl {
+  50% {
+    translate: 0 -12px;
+  }
+}
+
+/* Carrusel (sin uso actual, se conserva). */
+.car {
+  overflow: hidden;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* Pista del carrusel. */
+.trk {
+  display: flex;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Diapositiva del carrusel. */
+.sl {
+  min-width: 100%;
+  padding: 34px 38px;
+}
+
+/* Texto de la diapositiva. */
+.sl p {
+  font-size: 1.2rem;
+  margin: 14px 0 18px;
+}
+
+/* Nombre en la diapositiva. */
+.sl b {
+  font-family: Outfit;
+}
+
+/* Indicadores del carrusel. */
+.dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+}
+
+/* Punto del carrusel. */
+.dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 99px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0;
+}
+
+/* Punto activo. */
+.dots button[aria-current="true"] {
+  width: 30px;
+  background: var(--mint);
+}
+
+/* Botón redondo con flecha / zoom (calendario). */
+.ar {
+  border: 1px solid var(--bd);
+  background: var(--glass);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+/* ==================================================================
+   SERVICIOS (mapa + agente)
+   ================================================================== */
+/* Bloque de los dos servicios: dos mitades en columnas. */
+.svc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* Cada mitad del bloque de servicios. */
+.half {
+  padding: 100px 5vw 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Título de cada mitad. */
+.half h2 {
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+}
+
+/* Mitad izquierda: degradado verde (mapa). */
+.half.l {
+  background: linear-gradient(
+    160deg,
+    rgba(45, 226, 196, 0.16),
+    rgba(10, 44, 99, 0.55)
+  );
+}
+
+/* Mitad derecha: degradado azul (agente). */
+.half.rt {
+  background: linear-gradient(
+    200deg,
+    rgba(37, 99, 255, 0.38),
+    rgba(6, 26, 58, 0.6)
+  );
+}
+
+/* Animación de pulso (onda que se expande): la usan los marcadores del mapa Leaflet. */
+@keyframes pl {
+  from {
+    opacity: 0.8;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+
+/* Lista de pasos del agente. */
+.steps {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Un paso (tarjeta con icono + texto). */
+.step {
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* Cuadro del icono del paso. */
+.step i {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 255, 0.7),
+    rgba(45, 226, 196, 0.45)
+  );
+  font-style: normal;
+}
+
+/* Título del paso. */
+.step h3 {
+  font-size: 1.05rem;
+}
+
+/* Descripción del paso. */
+.step p {
+  font-size: 0.9rem;
+  color: var(--mu);
+}
+
+/* Conector vertical entre pasos. */
+.step + .step::before {
+  content: "";
+  position: absolute;
+  left: 40px;
+  top: -14px;
+  height: 14px;
+  width: 2px;
+  background: linear-gradient(var(--sky), var(--mint));
+  animation: fade 1.4s infinite alternate;
+}
+
+/* Esqueleto animado (barras que simulan carga). */
+.sk {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* Barra del esqueleto. */
+.sk span {
+  height: 7px;
+  border-radius: 9px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(45, 226, 196, 0.7),
+    rgba(255, 255, 255, 0.1)
+  );
+  background-size: 200% 100%;
+  animation: sh 1.6s linear infinite;
+}
+
+/* Segunda barra más corta. */
+.sk span:nth-child(2) {
+  width: 75%;
+}
+
+/* Tercera barra aún más corta. */
+.sk span:nth-child(3) {
+  width: 50%;
+}
+
+/* Animación: brillo que recorre las barras. */
+@keyframes sh {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ==================================================================
+   QUIÉNES SOMOS
+   ================================================================== */
+/* «Quiénes somos»: texto a la izquierda, imagen a la derecha. */
+.ab {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Párrafos de «Quiénes somos». */
+.ab p {
+  color: var(--mu);
+  margin-top: 14px;
+  max-width: 62ch;
+}
+
+/* Recuadro de la derecha de «Quiénes somos» (aquí con foto de fondo, ver más abajo). */
+.tri {
+  height: 320px;
+  position: relative;
+}
+
+/* ==================================================================
+   PIE DE PÁGINA
+   ================================================================== */
+/* Pie de página. */
+footer {
+  margin-top: 40px;
+  padding: 40px 20px 30px;
+  border-radius: 32px 32px 0 0;
+  max-width: 1300px;
+  margin-inline: auto;
+}
+
+/* Rejilla de 3 columnas del pie. */
+.fg {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Enlaces del pie. */
+.fg button,
+.fg a {
+  display: block;
+  background: none;
+  border: 0;
+  color: var(--mu);
+  padding: 3px 0;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: left;
+}
+
+/* Hover de los enlaces del pie. */
+.fg button:hover {
+  color: #fff;
+}
+
+/* Texto del pie. */
+.fg p {
+  color: var(--mu);
+  font-size: 0.92rem;
+}
+
+/* ==================================================================
+   BANNERS DE PÁGINAS INTERIORES, ANILLOS Y MARQUESINAS
+   ================================================================== */
+/* Banner de las páginas interiores (Prácticas, Buscador, Blog). */
+.hb {
+  min-height: 70vh;
+  padding: 130px 24px 40px;
+  text-align: center;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Título del banner interior. */
+.hb h1 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  max-width: 20ch;
+  font-weight: 800;
+}
+
+/* Subtítulo del banner interior. */
+.hb .lead {
+  max-width: 60ch;
+}
+
+/* Cifra enorme con degradado de texto (1.200+). */
+.big:not(.btn) {
+  font-size: clamp(3.2rem, 9vw, 6.5rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, var(--sky) 60%, var(--mint));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Anillo decorativo que gira alrededor del banner. OJO: tiene pointer-events:none más abajo para no tapar los botones. */
+.ring {
+  position: absolute;
+  border: 1.5px solid rgba(76, 195, 255, 0.35);
+  border-radius: 50%;
+  animation: spin 30s linear infinite;
+}
+
+/* Animación: girar. */
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* Puntito luminoso que viaja por el anillo. */
+.ring::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 14px var(--mint);
+}
+
+/* Marquesina (franja con scroll infinito). */
+.mq {
+  overflow: hidden;
+  padding: 10px 0;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+/* Pista de la marquesina (animada). */
+.mt {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: mq 36s linear infinite;
+}
+
+/* Animación: desplazar la marquesina. */
+@keyframes mq {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Tarjeta de empresa de la marquesina. */
+.co {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 18px;
+  font: 700 1.05rem Outfit;
+  white-space: nowrap;
+}
+
+/* Cuadrado con la inicial de la empresa. */
+.co i {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  font-style: normal;
+}
+
+/* ==================================================================
+   CALENDARIO, FORMULARIOS Y PLANES
+   ================================================================== */
+/* Reserva de reunión: 2 columnas (calendario + formulario). */
+.bk {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* Padding de la tarjeta del calendario. */
+.bk > div {
+  padding: 28px;
+}
+
+/* Rejilla de 7 columnas del calendario. */
+.cal {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+/* Nombre del día de la semana. */
+.cal small {
+  text-align: center;
+  color: var(--mu);
+  font-size: 0.78rem;
+  text-transform: capitalize;
+}
+
+/* Botón de día del calendario. */
+.dy {
+  aspect-ratio: 1;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+/* Día disponible. */
+.dy:not(:disabled) {
+  border-color: rgba(76, 195, 255, 0.45);
+  background: rgba(76, 195, 255, 0.1);
+}
+
+/* Hover de día disponible. */
+.dy:not(:disabled):hover {
+  background: rgba(76, 195, 255, 0.3);
+  transform: scale(1.06);
+}
+
+/* Día no disponible (tachado). */
+.dy:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* Día seleccionado. */
+.dy[aria-pressed="true"] {
+  background: linear-gradient(135deg, var(--elec), var(--mint));
+  border-color: #fff;
+  box-shadow: 0 0 18px rgba(45, 226, 196, 0.6);
+}
+
+/* Contenedor de «chips» (botones tipo etiqueta). */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Chip. */
+.chip {
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  border: 1px solid var(--bd);
+  background: var(--glass);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Hover del chip. */
+.chip:hover:not(:disabled) {
+  background: var(--g2);
+}
+
+/* Chip no disponible. */
+.chip:disabled {
+  opacity: 0.35;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+/* Chip seleccionado. */
+.chip[aria-pressed="true"] {
+  background: linear-gradient(135deg, var(--elec), var(--mint));
+  border-color: #fff;
+}
+
+/* Campo de formulario (etiqueta + input). */
+.fd {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+
+/* Etiquetas de formulario. */
+.fd label,
+.fd legend {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+/* Estilo común de inputs y selects. */
+input:not([type="checkbox"]):not([type="file"]),
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--bd);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font: inherit;
+}
+
+/* Color del placeholder. */
+input::placeholder {
+  color: #9db6da;
+}
+
+/* Color de las opciones del desplegable. */
+option {
+  color: #061a3a;
+}
+
+/* Mensaje de error de formulario. */
+.er {
+  color: #ffb4b4;
+  font-size: 0.85rem;
+}
+
+/* Dos campos en fila. */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Rejilla de planes de precios (3 columnas). */
+.pl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* Tarjeta de plan. */
+.pc {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+}
+
+/* Plan destacado. */
+.pc.f {
+  background: linear-gradient(
+    160deg,
+    rgba(37, 99, 255, 0.45),
+    rgba(45, 226, 196, 0.2)
+  );
+  border-color: var(--mint);
+  transform: scale(1.03);
+}
+
+/* Hover del plan destacado. */
+.pc.f:hover {
+  transform: scale(1.03) translateY(-6px);
+}
+
+/* Precio del plan. */
+.pc .pr {
+  font: 800 2.6rem Outfit;
+}
+
+/* Listas de funciones del plan. */
+.pc ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+
+/* Elemento de lista con icono. */
+.pc li {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  font-size: 0.95rem;
+}
+
+/* Icono de check. */
+.pc li svg {
+  flex: none;
+  color: var(--mint);
+  margin-top: 2px;
+}
+
+/* Icono de las limitaciones. */
+.pc .lm li svg {
+  color: var(--sky);
+}
+
+/* Botón del plan, al final de la tarjeta. */
+.pc .btn {
+  margin-top: auto;
+  justify-content: center;
+}
+
+/* Insignia «Nabarmendua / Destacado». */
+.bd {
+  position: absolute;
+  top: -13px;
+  right: 20px;
+  background: var(--mint);
+  color: #032;
+  padding: 0.2rem 0.8rem;
+  border-radius: 99px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* Zona para subir el currículum. */
+.drop {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 20px;
+  border: 2px dashed var(--bd);
+  border-radius: 18px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Hover/foco de la zona de subida. */
+.drop:hover,
+.drop:focus-within {
+  border-color: var(--mint);
+}
+
+/* Oculta visualmente el input file (sigue accesible). */
+.vh {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+/* Pantalla de carga / aviso del buscador. */
+.ld {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  text-align: center;
+  padding: 30px 0;
+}
+
+/* Spinner circular. */
+.sp {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--mint);
+  animation: spin 1s linear infinite;
+}
+
+/* ==================================================================
+   BLOG Y LOGIN
+   ================================================================== */
+/* Rejilla del blog. */
+.bl {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 22px;
+}
+
+/* Tarjeta de entrada de blog. */
+.bl article {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Miniatura (proporción 16:10). */
+.bl .tb {
+  aspect-ratio: 16/10;
+}
+
+/* Cuerpo de la tarjeta. */
+.bl .bb {
+  padding: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+/* Resumen de la entrada. */
+.bl p {
+  color: var(--mu);
+  font-size: 0.93rem;
+}
+
+/* Página de login centrada. */
+.lg {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 110px 16px 40px;
+}
+
+/* Tarjeta del formulario de login. */
+.lg form {
+  width: 100%;
+  max-width: 440px;
+  padding: 36px;
+}
+
+/* Responsive (≤900px): todo pasa a una columna. */
+@media (max-width: 900px) {
+  .hero,
+  .svc,
+  .ab,
+  .bk,
+  .pl,
+  .fg,
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding-top: 110px;
+  }
+  .art {
+    height: 320px;
+  }
+  .svc {
+    min-height: auto;
+  }
+  .pc.f,
+  .pc.f:hover {
+    transform: none;
+  }
+  .sl {
+    padding: 24px;
+  }
+}
+
+/* Accesibilidad: sin animaciones si el usuario lo pide. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* TEMA CLARO: redefine las variables de color para fondo claro. */
+:root {
+  --navy: #eaf4ff;
+  --tx: #0b2a5b;
+  --mu: #3f5b8c;
+  --glass: rgba(255, 255, 255, 0.58);
+  --g2: rgba(255, 255, 255, 0.85);
+  --bd: rgba(37, 99, 255, 0.16);
+  --sky: #1a8fe3;
+  --mint: #0aa38c;
+}
+
+/* Fondo claro. */
+body {
+  background: #eaf4ff;
+}
+
+/* Fondo claro con degradados suaves. */
+.bg {
+  background:
+    radial-gradient(60% 50% at 8% 4%, #bfe0ff, transparent 62%),
+    radial-gradient(50% 45% at 96% 24%, #c8f2ea, transparent 62%),
+    radial-gradient(55% 45% at 40% 100%, #cddfff, transparent 62%),
+    linear-gradient(180deg, #f4f9ff, #e0eeff);
+}
+
+/* Sombra más suave en tema claro. */
+.g {
+  box-shadow:
+    0 10px 34px rgba(37, 99, 255, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Botón fantasma legible en tema claro. */
+.btn.ghost {
+  color: var(--tx);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+/* Degradado menta→azul en tema claro. */
+.btn.mint {
+  background: linear-gradient(135deg, #0aa38c, #2563ff);
+}
+
+/* Hover de navegación en tema claro. */
+.nl:hover {
+  color: var(--tx);
+  background: rgba(37, 99, 255, 0.1);
+}
+
+/* Enlace activo en tema claro. */
+.nl.on {
+  color: var(--tx);
+  background: rgba(37, 99, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(37, 99, 255, 0.45);
+}
+
+/* Selector de idioma en tema claro. */
+.sw {
+  background: rgba(37, 99, 255, 0.1);
+}
+
+/* Idioma activo en tema claro. */
+.sw button[aria-pressed="true"] {
+  background: #2563ff;
+  color: #fff;
+}
+
+/* Menú móvil desplegable con fondo blanco (tema claro). */
+.dd {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* Etiqueta en tema claro. */
+.tag {
+  color: #0b5fb8;
+  border-color: #1a8fe3;
+}
+
+/* Degradado de la cifra en tema claro. */
+.big:not(.btn) {
+  background: linear-gradient(135deg, #1747c9, #2563ff 55%, #0aa38c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Icono del paso en blanco. */
+.step i {
+  color: #fff;
+}
+
+/* Barras de esqueleto en tema claro. */
+.sk span {
+  background: linear-gradient(
+    90deg,
+    rgba(37, 99, 255, 0.1),
+    rgba(10, 163, 140, 0.6),
+    rgba(37, 99, 255, 0.1)
+  );
+  background-size: 200% 100%;
+}
+
+/* Elementos seleccionados con texto blanco (tema claro). */
+.chip[aria-pressed="true"],
+.dy[aria-pressed="true"] {
+  color: #fff;
+}
+
+/* Días disponibles en tema claro. */
+.dy:not(:disabled) {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Inputs claros. */
+input:not([type="checkbox"]):not([type="file"]),
+select {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--tx);
+  border-color: rgba(37, 99, 255, 0.25);
+}
+
+/* Placeholder en tema claro. */
+input::placeholder {
+  color: #7d93b8;
+}
+
+/* Rojo más oscuro para errores. */
+.er {
+  color: #b42318;
+}
+
+/* Plan destacado en tema claro. */
+.pc.f {
+  background: linear-gradient(
+    160deg,
+    rgba(37, 99, 255, 0.16),
+    rgba(10, 163, 140, 0.18)
+  );
+}
+
+/* Zona de subida en tema claro. */
+.drop {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Spinner en tema claro. */
+.sp {
+  border-color: rgba(37, 99, 255, 0.2);
+  border-top-color: var(--mint);
+}
+
+/* Hover de enlaces del pie en tema claro. */
+.fg button:hover {
+  color: var(--tx);
+}
+
+/* Anillo en tema claro. */
+.ring {
+  border-color: rgba(37, 99, 255, 0.25);
+}
+
+/* Aviso del mapa («arrastra el mapa…») pegado arriba a la izquierda. */
+.mh {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 99px;
+  max-width: 60%;
+}
+
+/* Marquesina: sin hueco (el espacio lo dan los hijos). */
+.mt {
+  gap: 0;
+}
+
+/* Separación entre elementos de la marquesina. */
+.mt > * {
+  margin-right: 18px;
+}
+
+/* Tarjeta de testimonio. */
+.tc {
+  flex: none;
+  width: min(340px, 80vw);
+  padding: 24px;
+  white-space: normal;
+  text-align: left;
+}
+
+/* Texto del testimonio. */
+.tc p {
+  margin: 0 0 12px;
+}
+
+/* Ancho máximo común a nav, secciones, hero y pie. */
+.nav,
+.sec,
+.hero,
+footer {
+  max-width: 1240px;
+}
+
+/* Padding lateral fluido de la barra. */
+.nav {
+  padding: 0 clamp(10px, 2vw, 16px);
+}
+
+/* Padding fluido de las secciones. */
+.sec {
+  padding: clamp(48px, 7vw, 88px) clamp(16px, 4vw, 32px);
+}
+
+/* Tamaño fluido (clamp) de títulos de sección. */
+.sec h2 {
+  font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+}
+
+/* Tamaño fluido de títulos de mitades. */
+.half h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+}
+
+/* Tamaño fluido del párrafo destacado. */
+.lead {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+}
+
+/* Padding fluido del banner. */
+.hero {
+  padding: clamp(100px, 14vh, 140px) clamp(16px, 4vw, 32px) 30px;
+}
+
+/* Tamaño fluido del título del banner. */
+.hero h1 {
+  font-size: clamp(2.3rem, 5.2vw, 4.4rem);
+}
+
+/* Padding fluido del banner interior. */
+.hb {
+  padding: clamp(100px, 14vh, 130px) clamp(16px, 4vw, 24px) 40px;
+}
+
+/* Tamaño fluido del título del banner interior. */
+.hb h1 {
+  font-size: clamp(2rem, 4.6vw, 3.6rem);
+}
+
+/* Tamaño fluido de botones. */
+.btn {
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+}
+
+/* Tamaño fluido de botones grandes. */
+.btn.big {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  padding: clamp(0.85rem, 1.4vw, 1.05rem) clamp(1.5rem, 3vw, 2.2rem);
+}
+
+/* Tamaño fluido del precio. */
+.pc .pr {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+/* Altura fluida del arte del banner. */
+.art {
+  height: clamp(280px, 36vw, 420px);
+}
+
+/* Altura fluida del recuadro de «Quiénes somos». */
+.tri {
+  height: clamp(240px, 30vw, 320px);
+}
+
+/* Tamaño fluido de los nodos. */
+.node {
+  width: clamp(70px, 9vw, 88px);
+  height: clamp(70px, 9vw, 88px);
+}
+
+/* Tamaño fluido del nodo central. */
+.node.m {
+  width: clamp(96px, 12vw, 124px);
+  height: clamp(96px, 12vw, 124px);
+}
+
+/* Centrado del pie. */
+footer {
+  margin: 40px auto 0;
+}
+
+/* Bloque de servicios: ancho máximo, hueco y padding. */
+.svc {
+  max-width: 1240px;
+  margin: auto;
+  gap: 22px;
+  padding: 96px clamp(14px, 3vw, 24px) 28px;
+  min-height: 100vh;
+}
+
+/* Mitades con bordes muy redondeados. */
+.half {
+  border-radius: 36px;
+  padding: clamp(22px, 3.2vw, 44px);
+}
+
+/* Degradado verde claro. */
+.half.l {
+  background: linear-gradient(
+    160deg,
+    rgba(10, 163, 140, 0.2),
+    rgba(255, 255, 255, 0.5)
+  );
+}
+
+/* Degradado azul claro. */
+.half.rt {
+  background: linear-gradient(
+    200deg,
+    rgba(37, 99, 255, 0.2),
+    rgba(255, 255, 255, 0.5)
+  );
+}
+
+/* El bloque #services ya lleva su propio padding superior. */
+#services {
+  scroll-margin-top: 0;
+}
+
+/* Responsive (≤900px): servicios a una columna y se oculta el aviso del mapa. */
+@media (max-width: 900px) {
+  .svc {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 92px 14px 20px;
+  }
+  .half {
+    padding: 22px;
+  }
+  .mh {
+    display: none;
+  }
+}
+
+/* Con movimiento reducido la marquesina sigue, pero más lenta. */
+@media (prefers-reduced-motion: reduce) {
+  .mq .mt {
+    animation: mq 70s linear infinite !important;
+  }
+}
+
+/* El atributo hidden siempre oculta el elemento, aunque otra regla le dé display. */
+[hidden] {
+  display: none !important;
+}
+
+/* Los enlaces con aspecto de botón no se subrayan. */
+a.nl,
+a.btn,
+a.logo {
+  text-decoration: none;
+}
+
+/* El logo-enlace hereda el color del texto. */
+a.logo {
+  color: inherit;
+}
+
+/* Escritorio: el menú horizontal se muestra. */
+@media (min-width: 1021px) {
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+/* Iconos SVG de línea (trazo, sin relleno). */
+svg.ic {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Botón a todo el ancho. */
+.btn.full {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Texto atenuado. */
+.muted {
+  color: var(--mu);
+}
+
+/* (Logo antiguo de círculos: sin uso, se conserva por compatibilidad.) */
+.lo-a {
+  fill: none;
+  stroke: #2de2c4;
+  stroke-width: 3;
+}
+
+/* (Logo antiguo.) */
+.lo-b {
+  fill: #2563ff;
+  fill-opacity: 0.85;
+  stroke: #4cc3ff;
+  stroke-width: 2;
+}
+
+/* (Logo antiguo.) */
+.lo-c {
+  fill: #fff;
+}
+
+/* Posición del nodo 1 (arriba izquierda). */
+.art .n1 {
+  left: 20%;
+  top: 20%;
+  animation-delay: 0s;
+}
+
+/* Posición del nodo 2 (arriba derecha). */
+.art .n2 {
+  left: 80%;
+  top: 16%;
+  animation-delay: -2s;
+}
+
+/* Posición del nodo 3 (abajo). */
+.art .n3 {
+  left: 50%;
+  top: 88%;
+  animation-delay: -4s;
+}
+
+/* Posición del nodo central. */
+.art .n4 {
+  left: 50%;
+  top: 50%;
+  animation-delay: -1s;
+}
+
+/* Líneas del triángulo de «Quiénes somos». */
+.tri line {
+  stroke: #4cc3ff;
+  stroke-width: 2;
+  stroke-dasharray: 5 7;
+}
+
+/* Nodo 1 de «Quiénes somos». */
+.tri .a1 {
+  left: 27%;
+  top: 30%;
+  animation-delay: 0s;
+}
+
+/* Nodo 2. */
+.tri .a2 {
+  left: 73%;
+  top: 30%;
+  animation-delay: -2s;
+}
+
+/* Nodo 3. */
+.tri .a3 {
+  left: 50%;
+  top: 73%;
+  animation-delay: -4s;
+}
+
+/* Sección sin padding inferior. */
+.sec.nopb {
+  padding-bottom: 0;
+}
+
+/* Marquesina de testimonios. */
+.mq-t {
+  padding: 24px 0;
+}
+
+/* Marquesina de testimonios más lenta. */
+.mt.slow {
+  animation-duration: 48s;
+}
+
+/* Cargo bajo el nombre del testimonio. */
+.who {
+  color: var(--mu);
+  font-size: 0.9rem;
+}
+
+/* Logo del pie. */
+.flogo {
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+/* Selector de idioma del pie. */
+.fsw {
+  width: fit-content;
+  margin-top: 10px;
+}
+
+/* Línea de copyright. */
+.copy {
+  margin-top: 26px;
+  color: var(--mu);
+  font-size: 0.85rem;
+}
+
+/* Anillo 1 (Prácticas). */
+.ring.r1 {
+  width: 520px;
+  height: 520px;
+}
+
+/* Anillo 2 (Prácticas), gira al revés. */
+.ring.r2 {
+  width: 760px;
+  height: 760px;
+  animation-direction: reverse;
+}
+
+/* Anillo 3 (Buscador). */
+.ring.r3 {
+  width: 480px;
+  height: 480px;
+}
+
+/* Anillo 4 (Buscador), gira al revés. */
+.ring.r4 {
+  width: 720px;
+  height: 720px;
+  animation-direction: reverse;
+}
+
+/* El título queda por encima de los anillos. */
+.hb h1 {
+  position: relative;
+}
+
+/* La cifra ocupa su propia línea. */
+.hb h1 .big {
+  display: block;
+}
+
+/* Banner corto (Blog). */
+.hb.short {
+  min-height: 44vh;
+}
+
+/* Nodo central estático (Buscador). */
+.node.m.static {
+  position: relative;
+  left: 0;
+  top: 0;
+  transform: none;
+}
+
+/* Sección compacta. */
+.sec.tight {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Título pequeño en sección compacta. */
+.sec.tight h2 {
+  font-size: 1.4rem;
+}
+
+/* Margen inferior del párrafo (20px). */
+.sec .lead.mb {
+  margin-bottom: 20px;
+}
+
+/* Margen inferior (24px). */
+.sec .lead.mb2 {
+  margin-bottom: 24px;
+}
+
+/* Cabecera del calendario (mes + flechas). */
+.cal-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+/* Nombre del mes. */
+.cal-m {
+  text-transform: capitalize;
+  font-family: Outfit, system-ui, sans-serif;
+  font-size: 1.2rem;
+}
+
+/* Título del bloque de horas. */
+.bk h3.slot-h {
+  margin: 18px 0 10px;
+  font-size: 1rem;
+}
+
+/* Padding del formulario de reserva. */
+.bk form {
+  padding: 28px;
+}
+
+/* Pantalla de reserva confirmada. */
+.done {
+  padding: 50px;
+}
+
+/* Spinner estático (verde). */
+.done .sp {
+  margin: 0 auto 20px;
+  animation: none;
+  border-color: var(--mint);
+}
+
+/* Título de confirmación. */
+.done h3 {
+  font-size: 2rem;
+}
+
+/* Resumen de la reserva. */
+.done .lead {
+  margin: 12px auto;
+}
+
+/* Botón «nueva reserva». */
+.done .btn {
+  margin-top: 20px;
+}
+
+/* Separación sobre las tarjetas de planes. */
+#plans .pl {
+  margin-top: 34px;
+}
+
+/* Nombre del plan. */
+.pc h3 {
+  font-size: 1.6rem;
+}
+
+/* Texto «/ año» junto al precio. */
+.pc .pr small {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--mu);
+}
+
+/* Destinatarios del plan. */
+.pc .tg {
+  color: var(--mu);
+}
+
+/* Cabecera de sección (margen inferior). */
+.sec-head {
+  margin-bottom: 28px;
+}
+
+/* Tarjeta del formulario de prueba. */
+.trial {
+  padding: clamp(22px, 4vw, 44px);
+  max-width: 760px;
+  margin: auto;
+}
+
+/* Etiqueta con borde continuo. */
+.tag.solid {
+  border-style: solid;
+}
+
+/* Texto «cambiar archivo». */
+.drop .chg {
+  color: var(--mint);
+}
+
+/* Botón grande a todo el ancho. */
+.btn.big.full {
+  margin-top: 8px;
+}
+
+/* Título del aviso. */
+.ld h3 {
+  font-size: 1.6rem;
+}
+
+/* Líneas de progreso del buscador (apagadas). */
+#ls p {
+  opacity: 0.3;
+  transition: 0.4s;
+}
+
+/* Línea de progreso activa. */
+#ls p.on {
+  opacity: 1;
+}
+
+/* Sección sin padding superior. */
+.sec.nopt {
+  padding-top: 0;
+}
+
+/* Chips de categorías del blog. */
+.chips.cat {
+  margin-bottom: 26px;
+  justify-content: center;
+}
+
+/* Etiqueta de categoría en tarjeta. */
+.tag.card {
+  width: fit-content;
+  margin: 0;
+}
+
+/* Fecha de la entrada. */
+.bl small {
+  color: var(--mu);
+}
+
+/* Miniatura decorativa del blog. */
+.tb {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Círculo decorativo. */
+.tb::before {
+  content: "";
+  position: absolute;
+  width: 48%;
+  height: 48%;
+  left: 14%;
+  top: 20%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Rectángulo decorativo. */
+.tb::after {
+  content: "";
+  position: absolute;
+  right: 14%;
+  top: 38%;
+  width: 42%;
+  height: 44%;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Degradado miniatura 1. */
+.tb.t0 {
+  background: linear-gradient(135deg, #2563ff, #2de2c4);
+}
+
+/* Degradado miniatura 2. */
+.tb.t1 {
+  background: linear-gradient(135deg, #0a2c63, #4cc3ff);
+}
+
+/* Degradado miniatura 3. */
+.tb.t2 {
+  background: linear-gradient(135deg, #4cc3ff, #2563ff);
+}
+
+/* Degradado miniatura 4. */
+.tb.t3 {
+  background: linear-gradient(135deg, #1747c9, #2de2c4);
+}
+
+/* Logo centrado en el login. */
+.lg .logo {
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+/* Título del login. */
+.lg h1 {
+  font-size: 1.8rem;
+  margin-bottom: 22px;
+}
+
+/* Contenedor del campo contraseña. */
+.pw {
+  position: relative;
+}
+
+/* Botón mostrar/ocultar contraseña. */
+.pw .nl {
+  position: absolute;
+  right: 4px;
+  top: 3px;
+}
+
+/* «Mantener sesión». */
+.kp {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* Mensaje de error del login. */
+.lg .er {
+  margin-top: 14px;
+}
+
+/* «¿Olvidaste la contraseña?» */
+.lg .forgot {
+  margin-top: 16px;
+}
+
+/* Enlace. */
+.lg .forgot a {
+  color: var(--sky);
+}
+
+/* Volver al inicio. */
+.lg .back {
+  margin-top: 8px;
+}
+
+/* Colores del cuadrado con la inicial de cada empresa: 10 degradados que se repiten (10n+1 … 10n+10). */
+.co:nth-child(10n + 1) i {
+  background: linear-gradient(135deg, hsl(200 90% 55%), hsl(170 80% 50%));
+}
+
+.co:nth-child(10n + 2) i {
+  background: linear-gradient(135deg, hsl(214 90% 55%), hsl(176 80% 50%));
+}
+
+.co:nth-child(10n + 3) i {
+  background: linear-gradient(135deg, hsl(228 90% 55%), hsl(182 80% 50%));
+}
+
+.co:nth-child(10n + 4) i {
+  background: linear-gradient(135deg, hsl(242 90% 55%), hsl(188 80% 50%));
+}
+
+.co:nth-child(10n + 5) i {
+  background: linear-gradient(135deg, hsl(256 90% 55%), hsl(194 80% 50%));
+}
+
+.co:nth-child(10n + 6) i {
+  background: linear-gradient(135deg, hsl(270 90% 55%), hsl(200 80% 50%));
+}
+
+.co:nth-child(10n + 7) i {
+  background: linear-gradient(135deg, hsl(284 90% 55%), hsl(206 80% 50%));
+}
+
+.co:nth-child(10n + 8) i {
+  background: linear-gradient(135deg, hsl(298 90% 55%), hsl(212 80% 50%));
+}
+
+.co:nth-child(10n + 9) i {
+  background: linear-gradient(135deg, hsl(312 90% 55%), hsl(218 80% 50%));
+}
+
+.co:nth-child(10n + 10) i {
+  background: linear-gradient(135deg, hsl(326 90% 55%), hsl(224 80% 50%));
+}
+
+/* ======================================================================
+   NOVEDADES DE ESTA VERSIÓN
+   ====================================================================== */
+
+/* ---------- 1. ARREGLO DE LOS BOTONES DE LOS BANNERS ----------
+   Causa del fallo: los anillos (.ring) son elementos con position:absolute y se pintan
+   POR ENCIMA del contenido que no está posicionado, así que interceptaban los clics del
+   botón de los banners de «Te conseguimos las prácticas» y «Buscador inteligente».
+   Solución: (a) los anillos ya no reciben clics y (b) el contenido del banner se coloca
+   por encima de ellos. */
+.ring {
+  pointer-events: none; /* el anillo es solo decoración: el clic lo «atraviesa» */
+}
+.hb > :not(.ring) {
+  position: relative; /* crea contexto de apilado para poder usar z-index */
+  z-index: 1; /* título, texto y botón quedan sobre los anillos */
+}
+
+/* ---------- 2. LOGO / ICONO DE PRAKTIP ---------- */
+/* Icono de cabecera, pie y login (sustituye al antiguo logo de círculos). */
+.logo-ic {
+  display: block;
+  height: 32px;
+  width: auto; /* mantiene la proporción del SVG */
+}
+.flogo .logo-ic {
+  height: 34px;
+} /* un poco mayor en el pie */
+.lg .logo .logo-ic {
+  height: 44px;
+} /* y en la página de login */
+
+/* Icono grande dentro del nodo central del banner de la landing (sustituye a la «estrellita»). */
+.node.m .ic-big {
+  display: block;
+  width: 72%; /* ocupa casi todo el círculo */
+  height: auto;
+}
+
+/* ---------- 3. MAPA REAL (Leaflet + teselas OpenStreetMap/CARTO) ---------- */
+/* El contenedor es la tarjeta de cristal .map.g; Leaflet se dibuja dentro. */
+.map {
+  position: relative;
+  isolation: isolate; /* encierra los z-index internos de Leaflet: no tapan el menú fijo */
+  width: 100%;
+  height: clamp(300px, 34vw, 440px); /* alto del mapa de la landing */
+  overflow: hidden;
+  border-radius: 24px;
+}
+.map.bg2 {
+  height: clamp(380px, 58vw, 680px);
+} /* mapa grande de «Prácticas» */
+.map.leaflet-container {
+  background: #cde6ff; /* color mientras cargan las teselas */
+  font: inherit; /* Leaflet usa la tipografía de la web */
+}
+
+/* Aviso «arrastra el mapa…» encima del mapa. */
+.map .mh {
+  z-index: 1000; /* por encima de los paneles de Leaflet */
+  pointer-events: none; /* no estorba al arrastrar */
+}
+
+/* Marcador personalizado: punto de color con onda pulsante. */
+.pin-wrap {
+  background: none;
+  border: 0;
+} /* quita el estilo por defecto del divIcon */
+.pin-dot {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--pc, #2563ff); /* color según el sector (variable --pc) */
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(11, 42, 91, 0.45);
+  transition: transform 0.2s;
+}
+.pin-dot::after {
+  /* onda que se expande alrededor del punto */
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--pc, #2563ff);
+  animation: pl 2.4s ease-out infinite;
+}
+.leaflet-marker-icon:hover .pin-dot,
+.leaflet-marker-icon:focus-visible .pin-dot {
+  transform: scale(1.25); /* el marcador crece al pasar el ratón o enfocarlo */
+}
+
+/* Ventana emergente (popup) con el aspecto «glass» de la web. */
+.leaflet-popup-content-wrapper {
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--tx);
+  box-shadow: 0 10px 30px rgba(11, 42, 91, 0.25);
+}
+.leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.96);
+}
+.leaflet-popup-content {
+  margin: 14px 18px;
+  font: inherit;
+}
+.leaflet-popup-content p {
+  margin: 2px 0;
+}
+.pu h3 {
+  font-size: 1.05rem;
+  margin: 0 0 4px;
+}
+.pu p {
+  font-size: 0.88rem;
+  color: var(--mu);
+}
+.pu .md {
+  margin-top: 6px;
+  font-size: 0.78rem;
+}
+.pu .sec-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background: var(--pc);
+} /* puntito del color del sector */
+
+/* ---------- 4. FOTOS DE PERSONAS COMO FONDO ---------- */
+/* «Quiénes somos»: el recuadro de la derecha lleva una foto de fondo y los nodos de cristal encima.
+   La foto se define con la variable --photo en el HTML (así el CSS no depende de la URL). */
+.tri.photo {
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    linear-gradient(160deg, rgba(11, 42, 91, 0.35), rgba(10, 163, 140, 0.25)), var(--photo) center / cover no-repeat,
+    linear-gradient(135deg, #2563ff, #2de2c4); /* si la foto no carga se ve este degradado */
+  box-shadow: 0 16px 44px rgba(37, 99, 255, 0.25);
+}
+.tri.photo line {
+  stroke: #fff;
+} /* líneas blancas para que se vean sobre la foto */
+.tri.photo .node {
+  color: var(--tx);
+}
+@media (max-width: 900px) {
+  .tri.photo {
+    height: 260px;
+  } /* en móvil el recuadro se muestra más bajo */
+}
+
+/* Banda con foto de fondo para las secciones nuevas (ODS y análisis económico).
+   La foto va atenuada con un velo claro para que el texto siga siendo legible. */
+.band {
+  position: relative;
+  max-width: 1240px;
+  margin: 28px auto;
+  border-radius: 36px;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(234, 244, 255, 0.9), rgba(234, 244, 255, 0.94)), var(--photo) center / cover no-repeat,
+    linear-gradient(135deg, #cddfff, #c8f2ea);
+}
+.band > .sec {
+  position: relative;
+}
+
+/* ---------- 5. SECCIÓN «GURE GJH HELBURUAK» (ODS) ---------- */
+.gj-head {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.gj-head .lead {
+  margin: 0 auto;
+} /* párrafo introductorio centrado */
+.gj-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 ODS en una fila */
+  gap: 22px;
+}
+.gj-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 24px 22px 28px;
+}
+.gj-card img {
+  width: 150px; /* imagen cuadrada oficial del ODS */
+  height: 150px;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(11, 42, 91, 0.25);
+  object-fit: cover;
+}
+.gj-card h3 {
+  font-size: 1.15rem;
+}
+.gj-card p {
+  color: var(--mu);
+  font-size: 0.95rem;
+}
+@media (max-width: 900px) {
+  .gj-grid {
+    grid-template-columns: 1fr;
+  } /* móvil: una columna */
+}
+
+/* ---------- 6. SECCIÓN «AZTERKETA EKONOMIKOA» (tablas + gráficos) ---------- */
+.eco-head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.eco-head .lead {
+  margin: 0 auto 10px;
+}
+.eco-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columnas: tablas arriba, gráficos debajo */
+  gap: 22px;
+}
+.eco-card {
+  padding: 22px;
+  min-width: 0; /* permite que el gráfico se encoja dentro de la rejilla */
+}
+.eco-card.wide {
+  grid-column: 1 / -1;
+} /* tarjeta a todo el ancho (barras mensuales) */
+.eco-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+.eco-note {
+  margin-top: 18px;
+  text-align: center;
+  color: var(--mu);
+  font-size: 0.85rem;
+}
+@media (max-width: 900px) {
+  .eco-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablas de datos. El contenedor .tw permite scroll horizontal en pantallas pequeñas. */
+.tw {
+  overflow-x: auto;
+}
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.tbl th,
+.tbl td {
+  padding: 0.55rem 0.6rem;
+  text-align: right;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--bd);
+}
+.tbl th:first-child,
+.tbl td:first-child {
+  text-align: left;
+  white-space: normal;
+} /* primera columna: etiqueta */
+.tbl thead th {
+  color: var(--mu);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.tbl tfoot td,
+.tbl tr.tot td {
+  font-weight: 700;
+  border-bottom: 0;
+}
+.tbl .up {
+  color: var(--mint);
+  font-weight: 600;
+} /* variación positiva en verde */
+
+/* Gráficos: el SVG lo genera js/charts.js. */
+.chart {
+  width: 100%;
+  min-height: 260px;
+}
+.chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.chart text {
+  font: 12px "Figtree", system-ui, sans-serif;
+  fill: var(--mu);
+}
+.chart .ax {
+  stroke: var(--bd);
+  stroke-width: 1;
+} /* ejes y líneas guía */
+.chart .c1 {
+  fill: #4cc3ff;
+} /* serie «1. urtea» (azul claro) */
+.chart .c2 {
+  fill: #2563ff;
+} /* serie «2. urtea» (azul intenso) */
+.chart .bar {
+  transition: opacity 0.2s;
+}
+.chart .bar:hover {
+  opacity: 0.75;
+} /* resalta la barra señalada */
+.chart .ln {
+  fill: none;
+  stroke: #2563ff;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.chart .ar-fill {
+  fill: url(#gArea);
+} /* relleno degradado bajo la línea */
+.chart .pt {
+  fill: #fff;
+  stroke: #2563ff;
+  stroke-width: 2;
+}
+.chart .sl-0 {
+  fill: #2563ff;
+  stroke: #fff;
+} /* trozos del donut: Ikaslea */
+.chart .sl-1 {
+  fill: #0aa38c;
+  stroke: #fff;
+} /* Irakaslea */
+.chart .sl-2 {
+  fill: #4cc3ff;
+  stroke: #fff;
+} /* Ikastetxea */
+.chart .sl {
+  stroke-width: 2;
+  transition: opacity 0.2s;
+}
+.chart .sl:hover {
+  opacity: 0.8;
+}
+.chart .ctr {
+  font: 700 1.15rem "Outfit", sans-serif;
+  fill: var(--tx);
+  text-anchor: middle;
+} /* cifra central del donut */
+.chart .ctr-s {
+  text-anchor: middle;
+  font-size: 12px;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--mu);
+}
+.legend i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+/* ---------- 7. COLORES POR SECTOR (marcadores del mapa) Y LEYENDAS DE LOS GRÁFICOS ---------- */
+/* Cada clase fija la variable --pc (color del punto) que usan .pin-dot y .sec-dot. */
+.sc0 { --pc: #2563ff; } /* Tecnología */
+.sc1 { --pc: #0aa38c; } /* Industria */
+.sc2 { --pc: #f59e0b; } /* Logística */
+.sc3 { --pc: #8b5cf6; } /* Agroalimentación */
+.sc4 { --pc: #ef4444; } /* Salud */
+.sc5 { --pc: #06b6d4; } /* Energía */
+
+/* Cuadritos de color de las leyendas (deben coincidir con los colores del SVG). */
+.legend .k-y1 { background: #4cc3ff; } /* año 1 */
+.legend .k-y2 { background: #2563ff; } /* año 2 */
+.legend .k-0 { background: #2563ff; } /* plan Ikaslea */
+.legend .k-1 { background: #0aa38c; } /* plan Irakaslea */
+.legend .k-2 { background: #4cc3ff; } /* plan Ikastetxea */

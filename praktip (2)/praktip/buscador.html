@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- Página «Buscador inteligente»: planes y formulario de prueba del agente. -->
+<html lang="eu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PRAKTIP</title>
+  <!-- Tipografías de Google Fonts: Outfit (títulos) y Figtree (texto) -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Hoja de estilos única de la web -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<!-- Fondo fijo con degradados (decorativo) -->
+<div class="bg"></div>
+
+<!-- ============ CABECERA (barra fija, igual en todas las páginas) ============ -->
+<header class="nav">
+  <!-- Píldora izquierda: logo (icono de PRAKTIP) + menú principal + hamburguesa (móvil) -->
+  <div class="nb g">
+    <a class="logo" href="index.html" aria-label="PRAKTIP"><img class="logo-ic" src="img/icono.svg" alt="" width="43" height="32"><span>PRAKTIP</span></a>
+    <nav class="links" aria-label="Main"><a class="nl" href="index.html" data-i18n="home"></a><a class="nl" href="practicas.html" data-i18n="prac"></a><a class="nl on" href="buscador.html" aria-current="page" data-i18n="find"></a><a class="nl" href="blog.html" data-i18n="blog"></a></nav>
+    <button class="nl burger" id="burger" aria-expanded="false" aria-controls="dd" aria-label="Menu" data-ic="menu"></button>
+  </div>
+  <!-- Píldora derecha: acceso al login + selector de idioma EU/ES (main.js lo gestiona) -->
+  <div class="nb g r">
+    <a class="nl hm" href="login.html" data-i18n="login"></a>
+    <div class="sw" role="group" aria-label="Language"><button data-lang="eu">EU</button><button data-lang="es">ES</button></div>
+  </div>
+  <!-- Menú desplegable de móvil (oculto hasta pulsar la hamburguesa) -->
+  <nav class="dd g" id="dd" aria-label="Mobile" hidden><a class="nl" href="index.html" data-i18n="home"></a><a class="nl" href="practicas.html" data-i18n="prac"></a><a class="nl on" href="buscador.html" aria-current="page" data-i18n="find"></a><a class="nl" href="blog.html" data-i18n="blog"></a><a class="nl" href="login.html" data-i18n="login"></a></nav>
+</header>
+
+<main class="pg">
+<!-- ============ BANNER: título + botón que baja al formulario de prueba ============
+     (Botón arreglado: los anillos ya no interceptan el clic) -->
+<section class="hb">
+  <div class="ring r3"></div><div class="ring r4"></div> <!-- anillos decorativos -->
+  <div class="node g m static" data-ic="spark" data-s="48"></div>
+  <h1 data-i18n="bT"></h1>
+  <p class="lead" data-i18n="bS"></p>
+  <a class="btn big" href="#trial" data-i18n="cta"></a>
+</section>
+
+<!-- ============ PLANES DE PRECIOS (los genera buscador.js en #plist) ============ -->
+<section class="sec" id="plans"><h2 class="c" data-i18n="plT"></h2><div class="pl" id="plist"></div></section>
+
+<!-- ============ FORMULARIO DE PRUEBA DEL AGENTE ============ -->
+<section class="sec" id="trial">
+  <div class="c sec-head"><h2 data-i18n="trT"></h2><p class="lead" data-i18n="trS"></p></div>
+  <div class="g trial">
+    <!-- Vista 1: formulario -->
+    <form id="t-form" novalidate>
+      <p class="tag solid" id="ptag" hidden></p> <!-- plan elegido -->
+      <!-- Subida del currículum (PDF o DOCX) -->
+      <div class="fd"><label for="cvf" data-i18n="cv"></label>
+        <label class="drop"><input id="cvf" type="file" accept=".pdf,.docx" class="vh"><span data-ic="file" data-s="34"></span><span id="cvtxt"></span></label>
+        <span class="er" id="e-f" role="alert"></span></div>
+      <!-- Zona geográfica y nivel de estudios (chips) -->
+      <div class="fd"><label data-i18n="zn"></label><div class="chips" id="cz"></div></div>
+      <div class="fd"><label data-i18n="sd"></label><div class="chips" id="cl"></div></div>
+      <!-- Nombre de los estudios con sugerencias -->
+      <div class="fd"><label for="stn" data-i18n="sn"></label><input id="stn" list="fpl" data-i18n-ph="sph"><datalist id="fpl"></datalist><span class="er" id="e-s" role="alert"></span></div>
+      <button class="btn big full"><span data-ic="search"></span><span data-i18n="go"></span></button>
+    </form>
+    <!-- Vista 2: «cargando» con líneas de progreso -->
+    <div class="ld" id="t-load" role="status" hidden><div class="sp"></div><div id="ls"></div></div>
+    <!-- Vista 3: función aún no disponible -->
+    <div class="ld" id="t-na" hidden><div data-ic="info" data-s="60"></div><h3 data-i18n="na"></h3><p class="lead" data-i18n="nx"></p><button type="button" class="btn ghost" id="t-ok">OK</button></div>
+  </div>
+</section>
+</main>
+
+<!-- ============ PIE DE PÁGINA ============ -->
+<footer class="g">
+  <div class="fg">
+    <!-- Columna 1: logo y descripción -->
+    <div><a class="logo flogo" href="index.html" aria-label="PRAKTIP"><img class="logo-ic" src="img/icono.svg" alt="" width="43" height="32"><span>PRAKTIP</span></a><p data-i18n="fd"></p></div>
+    <!-- Columna 2: navegación -->
+    <div><b data-i18n="nv"></b><a href="index.html" data-i18n="home"></a><a href="practicas.html" data-i18n="prac"></a><a href="buscador.html" data-i18n="find"></a><a href="blog.html" data-i18n="blog"></a><a href="login.html" data-i18n="login"></a></div>
+    <!-- Columna 3: contacto (ejemplo) y selector de idioma -->
+    <div><b data-i18n="ct"></b><p>info@praktip.example<br><span data-i18n="ex"></span></p>
+      <div class="sw fsw" role="group" aria-label="Language"><button data-lang="eu">EU</button><button data-lang="es">ES</button></div></div>
+  </div>
+  <p class="c copy">© 2026 PRAKTIP. <span data-i18n="rt"></span> · <span data-i18n="ph"></span></p>
+</footer>
+
+<!-- Scripts (orden importante): datos → lógica común → resto de la página -->
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/buscador.js"></script>
+</body>
+</html>
