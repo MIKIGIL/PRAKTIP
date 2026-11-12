@@ -1,73 +1,60 @@
 <!DOCTYPE html>
+<!-- Página «Blog» con filtro por categoría. -->
 <html lang="eu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PRAKTIP - Blog</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap">
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PRAKTIP</title>
+  <!-- Tipografías de Google Fonts: Outfit (títulos) y Figtree (texto) -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Hoja de estilos única de la web -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header class="goiburua" id="hasiera">
-    <a class="logoa" href="index.html">PRAKTIP</a>
-    <nav aria-label="Menu nagusia">
-      <ul class="menua">
-        <li><a href="index.html#zer">Zer egiten dugu</a></li>
-        <li><a href="index.html#zeintzuk">Zeintzuk gara</a></li>
-        <li><a href="zerbitzuak.html">Zerbitzuak</a></li>
-        <li><a href="blog.html" aria-current="page">Blog</a></li>
-        <li><a href="index.html#kontaktua">Kontaktua</a></li>
-      </ul>
-    </nav>
-    <a class="btn btn-berdea" href="saioa.html">Hasi saioa</a>
-  </header>
+<!-- Fondo fijo con degradados (decorativo) -->
+<div class="bg"></div>
 
-  <main>
-    <section class="atala atala-zuria" id="blog">
-      <h1 style="font-size: 36px">Blog</h1>
-      <p class="sarrera">Praktikei, ikaskuntzari eta lan-mundura pasatzeari buruzko artikuluak.</p>
-      <ul class="sarea">
-        <li>
-          <article class="txartela artikulua">
-            <div class="irudia" role="img" aria-label="Artikuluaren argazkia">Praktikak</div>
-            <div class="edukia">
-              <p class="meta">2026-10-15 · Praktikak</p>
-              <h2 style="font-size: 20px">Nola aurkitu praktikak eraginkortasunez</h2>
-              <p>Praktikak bilatzeko aholku praktikoak ikasleentzat.</p>
-              <a href="blog.html">Irakurri gehiago</a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="txartela artikulua">
-            <div class="irudia" role="img" aria-label="Artikuluaren argazkia">Enpresak</div>
-            <div class="edukia">
-              <p class="meta">2026-10-22 · Enpresak</p>
-              <h2 style="font-size: 20px">Zergatik hartu praktikak?</h2>
-              <p>Enpresentzat praktikak hartzearen onurak eta aholkuak.</p>
-              <a href="blog.html">Irakurri gehiago</a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="txartela artikulua">
-            <div class="irudia" role="img" aria-label="Artikuluaren argazkia">Berdintasuna</div>
-            <div class="edukia">
-              <p class="meta">2026-11-01 · Berdintasuna</p>
-              <h2 style="font-size: 20px">Aukera berdintasuna praktiketan</h2>
-              <p>PRAKTIPek genero-berdintasuna sustatzen du bere prozesu guztietan.</p>
-              <a href="blog.html">Irakurri gehiago</a>
-            </div>
-          </article>
-        </li>
-      </ul>
-    </section>
-  </main>
+<!-- ============ CABECERA (barra fija, igual en todas las páginas) ============ -->
+<header class="nav">
+  <!-- Píldora izquierda: logo (icono de PRAKTIP) + menú principal + hamburguesa (móvil) -->
+  <div class="nb g">
+    <a class="logo" href="index.html" aria-label="PRAKTIP"><img class="logo-ic" src="img/icono.svg" alt="" width="43" height="32"><span>PRAKTIP</span></a>
+    <nav class="links" aria-label="Main"><a class="nl" href="index.html" data-i18n="home"></a><a class="nl" href="practicas.html" data-i18n="prac"></a><a class="nl" href="buscador.html" data-i18n="find"></a><a class="nl on" href="blog.html" aria-current="page" data-i18n="blog"></a></nav>
+    <button class="nl burger" id="burger" aria-expanded="false" aria-controls="dd" aria-label="Menu" data-ic="menu"></button>
+  </div>
+  <!-- Píldora derecha: acceso al login + selector de idioma EU/ES (main.js lo gestiona) -->
+  <div class="nb g r">
+    <a class="nl hm" href="login.html" data-i18n="login"></a>
+    <div class="sw" role="group" aria-label="Language"><button data-lang="eu">EU</button><button data-lang="es">ES</button></div>
+  </div>
+  <!-- Menú desplegable de móvil (oculto hasta pulsar la hamburguesa) -->
+  <nav class="dd g" id="dd" aria-label="Mobile" hidden><a class="nl" href="index.html" data-i18n="home"></a><a class="nl" href="practicas.html" data-i18n="prac"></a><a class="nl" href="buscador.html" data-i18n="find"></a><a class="nl on" href="blog.html" aria-current="page" data-i18n="blog"></a><a class="nl" href="login.html" data-i18n="login"></a></nav>
+</header>
 
-  <footer class="oina">
-    <strong>PRAKTIP</strong>
-    <span>2MSS2 · Ikasenpresa · 2026</span>
-  </footer>
+<main class="pg">
+<!-- Banner corto del blog -->
+<section class="hb short"><h1 data-i18n="blT"></h1><p class="lead" data-i18n="blS"></p></section>
+<!-- Filtro por categorías (#cats) y entradas (#posts): los pinta blog.js -->
+<section class="sec nopt"><div class="chips cat" id="cats"></div><div class="bl" id="posts"></div></section>
+</main>
+
+<!-- ============ PIE DE PÁGINA ============ -->
+<footer class="g">
+  <div class="fg">
+    <!-- Columna 1: logo y descripción -->
+    <div><a class="logo flogo" href="index.html" aria-label="PRAKTIP"><img class="logo-ic" src="img/icono.svg" alt="" width="43" height="32"><span>PRAKTIP</span></a><p data-i18n="fd"></p></div>
+    <!-- Columna 2: navegación -->
+    <div><b data-i18n="nv"></b><a href="index.html" data-i18n="home"></a><a href="practicas.html" data-i18n="prac"></a><a href="buscador.html" data-i18n="find"></a><a href="blog.html" data-i18n="blog"></a><a href="login.html" data-i18n="login"></a></div>
+    <!-- Columna 3: contacto (ejemplo) y selector de idioma -->
+    <div><b data-i18n="ct"></b><p>info@praktip.example<br><span data-i18n="ex"></span></p>
+      <div class="sw fsw" role="group" aria-label="Language"><button data-lang="eu">EU</button><button data-lang="es">ES</button></div></div>
+  </div>
+  <p class="c copy">© 2026 PRAKTIP. <span data-i18n="rt"></span> · <span data-i18n="ph"></span></p>
+</footer>
+
+<!-- Scripts (orden importante): datos → lógica común → resto de la página -->
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/blog.js"></script>
 </body>
 </html>

@@ -1,102 +1,159 @@
 <!DOCTYPE html>
+<!-- Landing page de PRAKTIP: banner, testimonios, servicios (mapa real y agente), quiénes somos, ODS y análisis económico. -->
 <html lang="eu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PRAKTIP - Hasiera</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap">
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PRAKTIP</title>
+  <!-- Tipografías de Google Fonts: Outfit (títulos) y Figtree (texto) -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+  <!-- Hoja de estilos única de la web -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header class="goiburua" id="hasiera">
-    <a class="logoa" href="index.html">PRAKTIP</a>
-    <nav aria-label="Menu nagusia">
-      <ul class="menua">
-        <li><a href="index.html#zer" aria-current="page">Zer egiten dugu</a></li>
-        <li><a href="index.html#zeintzuk" aria-current="page">Zeintzuk gara</a></li>
-        <li><a href="zerbitzuak.html">Zerbitzuak</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="index.html#kontaktua" aria-current="page">Kontaktua</a></li>
-      </ul>
-    </nav>
-    <a class="btn btn-berdea" href="saioa.html">Hasi saioa</a>
-  </header>
+<!-- Fondo fijo con degradados (decorativo) -->
+<div class="bg"></div>
 
-  <main>
-    <section class="banner" aria-labelledby="banner-izenburua">
-      <p class="goiburua-txikia">IKASENPRESA</p>
-      <h1 id="banner-izenburua">Praktikak, erraz lotuta</h1>
-      <p>PRAKTIP ikasenpresa da, eta Lanbide Heziketako ikasleen eta praktikak eskaintzen dituzten enpresen arteko bitartekaritza egiten du. Adimen artifizialeko agenteen eta enpresekin egindako hitzarmenen bidez, praktikak bilatzeko prozesua errazten dugu.</p>
-      <div class="botoiak">
-        <a class="btn btn-anbar btn-handia" href="probatu.html">Probatu dohainik</a>
-        <a class="btn btn-ertza" href="zerbitzuak.html">Zerbitzuak</a>
-        <a class="btn btn-ertza" href="#kontaktua">Jarri gurekin harremanetan</a>
-      </div>
-    </section>
+<!-- ============ CABECERA (barra fija, igual en todas las páginas) ============ -->
+<header class="nav">
+  <!-- Píldora izquierda: logo (icono de PRAKTIP) + menú principal + hamburguesa (móvil) -->
+  <div class="nb g">
+    <a class="logo" href="index.html" aria-label="PRAKTIP"><img class="logo-ic" src="img/icono.svg" alt="" width="43" height="32"><span>PRAKTIP</span></a>
+    <nav class="links" aria-label="Main"><a class="nl on" href="index.html" aria-current="page" data-i18n="home"></a><a class="nl" href="practicas.html" data-i18n="prac"></a><a class="nl" href="buscador.html" data-i18n="find"></a><a class="nl" href="blog.html" data-i18n="blog"></a></nav>
+    <button class="nl burger" id="burger" aria-expanded="false" aria-controls="dd" aria-label="Menu" data-ic="menu"></button>
+  </div>
+  <!-- Píldora derecha: acceso al login + selector de idioma EU/ES (main.js lo gestiona) -->
+  <div class="nb g r">
+    <a class="nl hm" href="login.html" data-i18n="login"></a>
+    <div class="sw" role="group" aria-label="Language"><button data-lang="eu">EU</button><button data-lang="es">ES</button></div>
+  </div>
+  <!-- Menú desplegable de móvil (oculto hasta pulsar la hamburguesa) -->
+  <nav class="dd g" id="dd" aria-label="Mobile" hidden><a class="nl on" href="index.html" aria-current="page" data-i18n="home"></a><a class="nl" href="practicas.html" data-i18n="prac"></a><a class="nl" href="buscador.html" data-i18n="find"></a><a class="nl" href="blog.html" data-i18n="blog"></a><a class="nl" href="login.html" data-i18n="login"></a></nav>
+</header>
 
-    <section class="iritziak" id="iritziak" aria-label="Erabiltzaileen iritziak">
-      <div class="iritziak-karrusela">
-        <ul class="sarea">
-          <li><blockquote>“PRAKTIPen bidez praktikak aurkitzeko prozesua askoz errazagoa izan da.” <strong>Ane · Ikaslea</strong></blockquote></li>
-          <li><blockquote>“Enpresekin harreman zuzena izateko aukera bikaina, gure beharretara egokituta.” <strong>Jon · Irakaslea</strong></blockquote></li>
-          <li><blockquote>“Talentu berria aurkitzeko plataforma eraginkorra eta erabilerraza.” <strong>Miren · Enpresa arduraduna</strong></blockquote></li>
-          <li><blockquote>“Praktikak aurkitzeko prozesua argia eta azkarra da PRAKTIPen.” <strong>Iker · Ikaslea</strong></blockquote></li>
-          <li><blockquote>“Ikasleentzat aukera egokiak aurkitzeko tresna oso erabilgarria.” <strong>Laura · Irakaslea</strong></blockquote></li>
-        </ul>
-        <ul class="sarea" aria-hidden="true">
-          <li><blockquote>“PRAKTIPen bidez praktikak aurkitzeko prozesua askoz errazagoa izan da.” <strong>Ane · Ikaslea</strong></blockquote></li>
-          <li><blockquote>“Enpresekin harreman zuzena izateko aukera bikaina, gure beharretara egokituta.” <strong>Jon · Irakaslea</strong></blockquote></li>
-          <li><blockquote>“Talentu berria aurkitzeko plataforma eraginkorra eta erabilerraza.” <strong>Miren · Enpresa arduraduna</strong></blockquote></li>
-          <li><blockquote>“Praktikak aurkitzeko prozesua argia eta azkarra da PRAKTIPen.” <strong>Iker · Ikaslea</strong></blockquote></li>
-          <li><blockquote>“Ikasleentzat aukera egokiak aurkitzeko tresna oso erabilgarria.” <strong>Laura · Irakaslea</strong></blockquote></li>
-        </ul>
-      </div>
-    </section>
+<main class="pg">
+<!-- ============ BANNER PRINCIPAL (hero) ============ -->
+<section class="hero">
+  <!-- Columna izquierda: titular, subtítulo y botón que baja a «services» -->
+  <div class="ht">
+    <h1 data-i18n="h1"></h1>
+    <p class="lead" data-i18n="sub"></p>
+    <a class="btn big" href="#services" data-i18n="cta"></a>
+  </div>
+  <!-- Columna derecha: dibujo animado. Líneas discontinuas que unen 3 nodos con el nodo central -->
+  <div class="art" aria-hidden="true">
+    <svg>
+      <line x1="20%" y1="20%" x2="50%" y2="50%"/>
+      <line x1="80%" y1="16%" x2="50%" y2="50%"/>
+      <line x1="50%" y1="88%" x2="50%" y2="50%"/>
+    </svg>
+    <div class="node g n1" data-ic="cap" data-s="36"></div>   <!-- nodo: estudiante -->
+    <div class="node g n2" data-ic="build" data-s="36"></div> <!-- nodo: empresa -->
+    <div class="node g n3" data-ic="school" data-s="36"></div><!-- nodo: centro educativo -->
+    <!-- Nodo central: AQUÍ va el icono de PRAKTIP (sustituye a la antigua estrellita) -->
+    <div class="node g m n4"><img class="ic-big" src="img/icono.svg" alt="PRAKTIP"></div>
+  </div>
+</section>
 
-    <section class="atala" id="zer">
-      <h2>Zer egiten dugu</h2>
-      <ol class="sarea" style="margin-top: 40px">
-        <li class="txartela"><p class="pausoa">01</p><h3>Profila sortu</h3><p>Erregistratu eta osatu zure profila ikasle, irakasle edo ikastetxe gisa.</p></li>
-        <li class="txartela"><p class="pausoa">02</p><h3>Eskaintzak aurkitu</h3><p>Bilatu praktikak adimen artifizialeko agenteen bidez edo zuzeneko eskaintzen artean.</p></li>
-        <li class="txartela"><p class="pausoa">03</p><h3>Konektatu</h3><p>Enpresekin edo ikastetxeekin konektatu eta hasi zure praktikaldia.</p></li>
-      </ol>
-    </section>
+<!-- ============ TESTIMONIOS (marquesina; las tarjetas las crea home.js) ============ -->
+<section class="sec c nopb"><h2 data-i18n="tt"></h2><span class="tag" data-i18n="demo"></span></section>
+<div class="mq mq-t"><div class="mt slow" id="testi"></div></div>
 
-    <section class="atala atala-zuria" id="zeintzuk">
-      <div class="bi-zutabe">
-        <div class="irudia" role="img" aria-label="Taldearen argazkia"><img src="img/general/zeingara.png" alt="PRAKTIP logotipoa" style="max-width: 80%; height: auto;"></div>
-        <div class="testua">
-          <h2>Zeintzuk gara</h2>
-          <p>PRAKTIP ikasenpresa bat da, Lanbide Heziketako ikasleen eta praktikak eskaintzen dituzten enpresen arteko bitartekaritza egiteko sortua.</p>
-          <p>Gure helburua praktikak bilatzeko prozesua erraztea da, aukera berdinak sustatuz eta kalitatezko praktikak bermatuz. Taldeko kideak: Unai (koordinatzailea), Riyad (idazkaria) eta Aimar (bozeramailea eta kontrolatzailea).</p>
-        </div>
-      </div>
-    </section>
+<!-- ============ SERVICIOS: mapa de empresas + agente inteligente ============ -->
+<section class="svc" id="services">
+  <!-- Mitad izquierda: acuerdos con empresas + MAPA REAL (Leaflet, lo crea map.js en #map-home) -->
+  <div class="half g l">
+    <h2 data-i18n="s1t"></h2>
+    <p class="lead" data-i18n="s1s"></p>
+    <span class="tag" data-i18n="dn"></span>
+    <div id="map-home"></div>
+    <a class="btn mint" href="practicas.html#book" data-i18n="call"></a>
+  </div>
+  <!-- Mitad derecha: pasos del agente (los pinta home.js en #steps) -->
+  <div class="half g rt">
+    <h2 data-i18n="s2t"></h2>
+    <p class="lead" data-i18n="s2s"></p>
+    <div class="steps" id="steps"></div>
+    <a class="btn" href="buscador.html#trial" data-i18n="cta"></a>
+  </div>
+</section>
 
-    <section class="atala atala-menta" id="kontaktua">
-      <div class="kontaktua">
-        <div class="datuak">
-          <h2>Jarri gurekin harremanetan</h2>
-          <p><strong>Helbidea:</strong> Calle Matia, 24,2ºB,20008 Donostia-San Sebastian, Gipuzkoa.</p>
-          <p><strong>Telefonoa:</strong> +34 943 000 000</p>
-          <p><strong>Posta elektronikoa:</strong> kontaktua@praktip.eus</p>
-          <p><a href="https://github.com/MIKIGIL/PRAKTIP">GitHub</a></p>
-        </div>
-        <!-- Backend-ik ez dago: formularioak ez du daturik bidaltzen -->
-        <form class="txartela formularioa" onsubmit="event.preventDefault()">
-          <div class="eremua"><label for="k-izena">Izena</label><input class="sarrera-eremua" id="k-izena" name="izena" type="text" autocomplete="name" required></div>
-          <div class="eremua"><label for="k-posta">Posta elektronikoa</label><input class="sarrera-eremua" id="k-posta" name="posta" type="email" autocomplete="email" required></div>
-          <div class="eremua"><label for="k-mezua">Mezua</label><textarea class="sarrera-eremua" id="k-mezua" name="mezua" rows="4" required></textarea></div>
-          <button class="btn btn-berdea" type="submit" style="align-self: flex-start">Bidali</button>
-        </form>
-      </div>
-    </section>
-  </main>
+<!-- ============ QUIÉNES SOMOS ============ -->
+<section class="sec ab">
+  <!-- Texto -->
+  <div><h2 data-i18n="abT"></h2><p data-i18n="p1"></p><p data-i18n="p2"></p></div>
+  <!-- Recuadro con FOTO de personas de fondo (variable --photo) y los 3 nodos de cristal encima.
+       Foto: Unsplash (Vitaly Gariev), licencia libre. Si no carga, se ve un degradado. -->
+  <div class="tri photo" style="--photo:url('https://images.unsplash.com/photo-1758270705290-62b6294dd044?auto=format&fit=crop&w=1000&q=70')" aria-hidden="true">
+    <svg width="100%" height="100%" viewBox="0 0 300 300">
+      <g><line x1="80" y1="90" x2="220" y2="90"/><line x1="80" y1="90" x2="150" y2="220"/><line x1="220" y1="90" x2="150" y2="220"/></g>
+    </svg>
+    <div class="node g a1" data-ic="cap" data-s="34"></div>
+    <div class="node g a2" data-ic="build" data-s="34"></div>
+    <div class="node g a3" data-ic="school" data-s="34"></div>
+  </div>
+</section>
 
-  <footer class="oina">
-    <strong>PRAKTIP</strong>
-    <span>2MSS2 · Ikasenpresa · 2026</span>
-  </footer>
+<!-- ============ NUEVO · GURE GJH HELBURUAK (los 3 ODS de PRAKTIP) ============
+     Contenido basado en el «Plan de sostenibilidad» (ODS 5, 8 y 10).
+     Banda con foto de personas de fondo (Pexels, licencia libre) atenuada con un velo claro. -->
+<div class="band" id="gjh" style="--photo:url('https://images.pexels.com/photos/3184663/pexels-photo-3184663.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+  <section class="sec">
+    <div class="gj-head"><h2 data-i18n="gjT"></h2><p class="lead" data-i18n="gjS"></p></div>
+    <!-- Las 3 tarjetas (imagen oficial del ODS + título + frase) las genera home.js -->
+    <div class="gj-grid" id="gj-grid"></div>
+  </section>
+</div>
+
+<!-- ============ NUEVO · AZTERKETA EKONOMIKOA (análisis económico) ============
+     Cifras de la hoja «Azterketa» del Excel del modelo económico (datos hipotéticos, ver ECO en data.js).
+     Las tablas y los gráficos SVG los dibujan economia.js y charts.js. -->
+<div class="band" id="azterketa" style="--photo:url('https://images.pexels.com/photos/3184356/pexels-photo-3184356.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+  <section class="sec">
+    <div class="eco-head">
+      <h2 data-i18n="ecT"></h2>
+      <p class="lead" data-i18n="ecS"></p>
+      <span class="tag" data-i18n="dn"></span>
+    </div>
+    <div class="eco-grid">
+      <!-- Tabla 1: indicadores principales -->
+      <div class="eco-card g"><h3 data-i18n="ecK"></h3><div class="tw"><table class="tbl" id="eco-kpi"></table></div></div>
+      <!-- Tabla 2: facturación por plan -->
+      <div class="eco-card g"><h3 data-i18n="ecP"></h3><div class="tw"><table class="tbl" id="eco-plan"></table></div></div>
+      <!-- Gráfico 1: barras, facturación mensual año 1 vs año 2 (a todo el ancho) -->
+      <div class="eco-card g wide"><h3 data-i18n="ecC1"></h3><div class="chart" id="ch-month"></div><div class="legend" id="lg-month"></div></div>
+      <!-- Gráfico 2: anillo, reparto de la facturación del año 2 por plan -->
+      <div class="eco-card g"><h3 data-i18n="ecC2"></h3><div class="chart" id="ch-plan"></div><div class="legend" id="lg-plan"></div></div>
+      <!-- Gráfico 3: línea, facturación acumulada en 24 meses -->
+      <div class="eco-card g"><h3 data-i18n="ecC3"></h3><div class="chart" id="ch-cum"></div></div>
+    </div>
+    <p class="eco-note" data-i18n="ecN"></p>
+  </section>
+</div>
+</main>
+
+<!-- ============ PIE DE PÁGINA ============ -->
+<footer class="g">
+  <div class="fg">
+    <!-- Columna 1: logo y descripción -->
+    <div><a class="logo flogo" href="index.html" aria-label="PRAKTIP"><img class="logo-ic" src="img/icono.svg" alt="" width="43" height="32"><span>PRAKTIP</span></a><p data-i18n="fd"></p></div>
+    <!-- Columna 2: navegación -->
+    <div><b data-i18n="nv"></b><a href="index.html" data-i18n="home"></a><a href="practicas.html" data-i18n="prac"></a><a href="buscador.html" data-i18n="find"></a><a href="blog.html" data-i18n="blog"></a><a href="login.html" data-i18n="login"></a></div>
+    <!-- Columna 3: contacto (ejemplo) y selector de idioma -->
+    <div><b data-i18n="ct"></b><p>info@praktip.example<br><span data-i18n="ex"></span></p>
+      <div class="sw fsw" role="group" aria-label="Language"><button data-lang="eu">EU</button><button data-lang="es">ES</button></div></div>
+  </div>
+  <p class="c copy">© 2026 PRAKTIP. <span data-i18n="rt"></span> · <span data-i18n="ph"></span></p>
+</footer>
+
+<!-- Scripts (orden importante): datos → lógica común → resto de la página -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/map.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/economia.js"></script>
+<script src="js/home.js"></script>
 </body>
 </html>
