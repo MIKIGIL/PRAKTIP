@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="eu">
+<!-- DOKUMENTUAREN EGITURA: head (konfigurazioa) + body (eduki ikusgarria) -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRAKTIP · Praktikak lortzen dizkizugu</title>
+  <!-- Favicon: icono.svg -->
+  <link rel="icon" type="image/svg+xml" href="irudiak/icono.svg">
+  <!-- Hoja de estilos externa compartida -->
+  <link rel="stylesheet" href="estiloak/estiloak.css">
+</head>
+<body>
+  <!-- GOIBURUA ETA NABIGAZIO MENUA: sticky, beti ikusgai -->
+  <header class="goiburua">
+    <nav class="menu-nagusia" aria-label="Nabigazio nagusia">
+      <!-- Ezkerra: logoa + orrialde nagusiak -->
+      <ul class="menu-ezkerra">
+        <li><a href="index.html"><img class="logoa-menua" src="irudiak/logo.svg" alt="PRAKTIP logoa - hasierara joan" width="228" height="50"></a></li>
+        <li><a class="menu-estekak" href="index.html">Hasiera</a></li>
+        <li><a class="menu-estekak menu-aktiboa" href="praktikak.html" aria-current="page">Praktikak lortzen dizkizugu</a></li>
+        <li><a class="menu-estekak" href="bilatzailea.html">Praktiken bilatzaile adimenduna</a></li>
+        <li><a class="menu-estekak" href="bloga.html">Bloga</a></li>
+      </ul>
+      <!-- Eskuina: saioa hasi + hizkuntzak -->
+      <ul class="menu-eskuina">
+        <li><a class="menu-estekak menu-saioa" href="saioa-hasi.html">Saioa hasi</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- BANNER NAGUSIA: la irudia CSSko atzealdea da (banner-praktikak); testua panel batean -->
+    <section class="banner-nagusia banner-praktikak" id="banner">
+      <div class="banner-edukia">
+        <div class="banner-testua">
+          <p class="banner-etiketa">Enpresekin hitzarmenak</p>
+          <h1>1.200 hitzarmen baino gehiago ditugu Euskadiko enpresekin</h1>
+          <p>Gure hitzarmenen sareari esker, ikasleei, irakasleei eta ikastetxeei praktika-aukera gehiago eskaintzen dizkiegu Euskadi osoan.</p>
+          <div class="botoi-multzoa"><a class="botoia botoia-zuria" href="#erreserba">Antolatu doako bilera bat</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATALA: PRAKTIPekin lan egiten duten enpresak -->
+    <section id="enpresak" class="atal atal-argia">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Hitzarmenak</p>
+        <h2>PRAKTIPekin lan egiten duten enpresak</h2>
+      <p class="atal-sarrera">Marka generikoen placeholder-ak dira; gero benetako logotipoak gehituko dira.</p>
+      <!-- Enpresa laguntzaileen carrusela (placeholder generikoak) -->
+      <div class="karrusela">
+        <div class="karrusel-elementua enpresa-logoa"><img class="enpresa-irudia" src="irudiak/logo-empresaconvenio1.png" alt="Enpresa laguntzailearen adibide-logotipoa 1" width="200" height="50"></div>
+        <div class="karrusel-elementua enpresa-logoa"><img class="enpresa-irudia" src="irudiak/logo-empresaconvenio2.png" alt="Enpresa laguntzailearen adibide-logotipoa 2" width="200" height="50"></div>
+        <div class="karrusel-elementua enpresa-logoa"><img class="enpresa-irudia" src="irudiak/logo-empresaconvenio3.png" alt="Enpresa laguntzailearen adibide-logotipoa 3" width="200" height="50"></div>
+        <div class="karrusel-elementua enpresa-logoa"><img class="enpresa-irudia" src="irudiak/logo-empresaconvenio4.png" alt="Enpresa laguntzailearen adibide-logotipoa 4" width="200" height="50"></div>
+        <div class="karrusel-elementua enpresa-logoa"><img class="enpresa-irudia" src="irudiak/logo-empresaconvenio5.png" alt="Enpresa laguntzailearen adibide-logotipoa 5" width="200" height="50"></div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ATALA: Euskadiko lurraldeak -->
+    <section id="lurraldeak" class="atal">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Lurraldeak</p>
+        <h2>Euskadiko lurraldeak</h2>
+        <!-- Lurralde historikoen txartelak (mapa interaktiborik gabe, irudi estatikoak) -->
+        <div class="txartel-multzoa">
+          <article class="txartela">
+            <img class="irudi-lurraldea" src="irudiak/araba.png" alt="Mapa: Araba" width="900" height="400">
+            <h3>Araba</h3>
+            <p>PRAKTIPen zerbitzua Araban ere eskaintzen da: ikasleak eta enpresak lotzen ditugu lurralde horretan.</p>
+          </article>
+          <article class="txartela">
+            <img class="irudi-lurraldea" src="irudiak/bizkaia.png" alt="Mapa: Bizkaia" width="900" height="400">
+            <h3>Bizkaia</h3>
+            <p>PRAKTIPen zerbitzua Bizkaian ere eskaintzen da: ikasleak eta enpresak lotzen ditugu lurralde horretan.</p>
+          </article>
+          <article class="txartela">
+            <img class="irudi-lurraldea" src="irudiak/gipuzkoa.png" alt="Mapa: Gipuzkoa" width="900" height="400">
+            <h3>Gipuzkoa</h3>
+            <p>PRAKTIPen zerbitzua Gipuzkoan ere eskaintzen da: ikasleak eta enpresak lotzen ditugu lurralde horretan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATALA: Antolatu doako bilera bat PRAKTIPekin -->
+    <section id="erreserba" class="atal atal-argia">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Bilerak</p>
+        <h2>Antolatu doako bilera bat PRAKTIPekin</h2>
+        <div class="zutabeak">
+          <!-- EZKERRA: egutegi estatikoa -->
+          <div class="zutabea">
+            <div class="egutegia">
+              <h3 class="egutegi-hilabetea">Urtarrila (adibidea)</h3>
+              <ul class="egutegi-zerrenda">
+          <li class="egutegi-eguna egutegi-astekoa"><abbr title="Astelehena">A</abbr></li>
+          <li class="egutegi-eguna egutegi-astekoa"><abbr title="Asteartea">I</abbr></li>
+          <li class="egutegi-eguna egutegi-astekoa"><abbr title="Asteazkena">A</abbr></li>
+          <li class="egutegi-eguna egutegi-astekoa"><abbr title="Osteguna">O</abbr></li>
+          <li class="egutegi-eguna egutegi-astekoa"><abbr title="Ostirala">O</abbr></li>
+          <li class="egutegi-eguna egutegi-astekoa"><abbr title="Larunbata">L</abbr></li>
+          <li class="egutegi-eguna egutegi-astekoa"><abbr title="Igandea">I</abbr></li>
+          <li class="egutegi-eguna egutegi-hutsa"></li>
+          <li class="egutegi-eguna egutegi-hutsa"></li>
+          <li class="egutegi-eguna egutegi-hutsa"></li>
+          <li class="egutegi-eguna egutegi-hutsa"></li>
+          <li class="egutegi-eguna egutegi-ezin">1</li>
+          <li class="egutegi-eguna egutegi-ezin">2</li>
+          <li class="egutegi-eguna egutegi-ezin">3</li>
+          <li class="egutegi-eguna egutegi-ezin">4</li>
+          <li class="egutegi-eguna egutegi-libre">5</li>
+          <li class="egutegi-eguna egutegi-ezin">6</li>
+          <li class="egutegi-eguna egutegi-libre">7</li>
+          <li class="egutegi-eguna egutegi-ezin">8</li>
+          <li class="egutegi-eguna egutegi-ezin">9</li>
+          <li class="egutegi-eguna egutegi-ezin">10</li>
+          <li class="egutegi-eguna egutegi-ezin">11</li>
+          <li class="egutegi-eguna egutegi-libre">12</li>
+          <li class="egutegi-eguna egutegi-ezin">13</li>
+          <li class="egutegi-eguna egutegi-libre">14</li>
+          <li class="egutegi-eguna egutegi-ezin">15</li>
+          <li class="egutegi-eguna egutegi-ezin">16</li>
+          <li class="egutegi-eguna egutegi-ezin">17</li>
+          <li class="egutegi-eguna egutegi-ezin">18</li>
+          <li class="egutegi-eguna egutegi-libre">19</li>
+          <li class="egutegi-eguna egutegi-ezin">20</li>
+          <li class="egutegi-eguna egutegi-libre">21</li>
+          <li class="egutegi-eguna egutegi-ezin">22</li>
+          <li class="egutegi-eguna egutegi-ezin">23</li>
+          <li class="egutegi-eguna egutegi-ezin">24</li>
+          <li class="egutegi-eguna egutegi-ezin">25</li>
+          <li class="egutegi-eguna egutegi-libre">26</li>
+          <li class="egutegi-eguna egutegi-ezin">27</li>
+          <li class="egutegi-eguna egutegi-libre">28</li>
+          <li class="egutegi-eguna egutegi-ezin">29</li>
+          <li class="egutegi-eguna egutegi-ezin">30</li>
+          <li class="egutegi-eguna egutegi-ezin">31</li>
+              </ul>
+              <p><strong>Ordutegi posibleak (adibidea):</strong></p>
+              <ul class="ordutegi-multzoa"><li class="ordutegia">09:30</li><li class="ordutegia">11:00</li><li class="ordutegia">12:30</li><li class="ordutegia">16:00</li></ul>
+              <p>Egutegia erakusgarria da: ez da benetako erreserba-daturik.</p>
+            </div>
+          </div>
+          <!-- ESKUINA: formulario estatikoa -->
+          <div class="zutabea">
+            <div class="formulario-itxura">
+              <h3>Bileraren datuak</h3>
+              <p>Formularioaren diseinua erakusteko adibidea da; ez da daturik bidaltzen edo gordetzen.</p>
+        <div class="eremua"><p class="eremu-etiketa">Izena</p><div class="eremu-kutxa">Zure izena</div></div>
+        <div class="eremua"><p class="eremu-etiketa">Abizenak</p><div class="eremu-kutxa">Zure abizenak</div></div>
+        <div class="eremua"><p class="eremu-etiketa">Helbide elektronikoa</p><div class="eremu-kutxa">izena@adibidea.eus</div></div>
+        <div class="eremua"><p class="eremu-etiketa">Ikastetxearen edo enpresaren izena</p><div class="eremu-kutxa">Erakundearen izena</div></div>
+              <div class="eremua"><p class="eremu-etiketa">Erabiltzaile mota</p><div class="aukera-multzoa"><span class="aukera">Ikaslea</span><span class="aukera">Irakaslea</span><span class="aukera">Ikastetxea</span></div></div>
+              <div class="eremua"><p class="eremu-etiketa">Bileraren arrazoia</p><div class="eremu-kutxa eremu-handia">Azaldu zertarako nahi duzun bilera</div></div>
+              <a class="botoia botoia-nagusia" href="index.html#kontaktua">Eskatu bilera bat</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTERRA: logoa, deskribapena, estekak, kontaktua, copyright -->
+  <footer class="oina">
+    <div class="oina-edukia">
+      <div class="oina-zutabea">
+        <img class="oina-logoa" src="irudiak/logo-claro.svg" alt="PRAKTIP logoa" width="192" height="42">
+        <p>PRAKTIP Lanbide Heziketako ikasleak eta praktikak eskaintzen dituzten enpresak lotzen dituen ikasenpresa da.</p>
+      </div>
+      <div class="oina-zutabea">
+        <p class="oina-izenburua">Orrialdeak</p>
+        <ul class="oina-zerrenda">
+          <li><a href="index.html">Hasiera</a></li>
+          <li><a href="praktikak.html">Praktikak lortzen dizkizugu</a></li>
+          <li><a href="bilatzailea.html">Praktiken bilatzaile adimenduna</a></li>
+          <li><a href="bloga.html">Bloga</a></li>
+          <li><a href="index.html#gjh">Gure GJH konpromezua</a></li>
+          <li><a href="index.html#eredu-ekonomikoa">Eredu ekonomikoa</a></li>
+        </ul>
+      </div>
+      <div class="oina-zutabea">
+        <p class="oina-izenburua">Kontaktua</p>
+        <!-- Placeholder-ak: gero benetako datuak jarri -->
+        <ul class="oina-zerrenda">
+          <li>[Posta elektronikoaren tokia]</li>
+          <li>[Telefonoaren tokia]</li>
+          <li><a href="index.html#kontaktua">Kontaktu-atala</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="oina-copyright">&copy; 2026 PRAKTIP · Eskubide guztiak erreserbatuta</p>
+  </footer>
+</body>
+</html>

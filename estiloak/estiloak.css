@@ -1,0 +1,392 @@
+/* =====================================================
+   PRAKTIP · Hoja de estilos compartida (estiloak.css)
+   Solo HTML + CSS: maquetación con Flexbox únicamente.
+   PALETA (4 colores, todo el diseño sale de ellos):
+     Urdin iluna      #14263f  (textos, bloques oscuros)
+     Urdin elektrikoa #0a6cf5  (color de marca, botones, detalles)
+     Urdin argia      #eef4ff  (fondos suaves)  · borde suave #d6e6ff
+     Zuria            #ffffff
+   FORMAS: esquinas muy redondeadas (1.5rem en tarjetas, 3rem en botones y chips)
+   ===================================================== */
+
+/* ---------- 1. OINARRIZKO ESTILOAK ---------- */
+
+/* Reset: caja con padding incluido y sin márgenes por defecto */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Salto suave al pulsar enlaces ancla */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilo general del texto y fondo de toda la web */
+body {
+  color: #14263f;
+  background-color: #ffffff;
+  font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif; /* acaba en genérica */
+  font-size: 1rem;
+  line-height: 1.65; /* sin unidad */
+}
+
+/* Títulos: pesados y con letras algo juntas, aspecto moderno */
+h1 { font-size: 3rem; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
+h2 { font-size: 2.25rem; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1rem; }
+h3 { font-size: 1.3rem; line-height: 1.3; margin-bottom: 0.75rem; }
+p  { margin-bottom: 1rem; }
+
+/* Imágenes flexibles */
+img { max-width: 100%; height: auto; }
+
+/* Enlaces dentro del contenido */
+main a { color: #0a6cf5; }
+
+/* Deja hueco bajo el menú flotante al saltar a un ancla */
+section { scroll-margin-top: 7rem; }
+
+/* ---------- 2. ATALAK (SECCIONES) ---------- */
+
+/* Banda de fondo a todo el ancho */
+.atal { padding: 4.5rem 1.5rem; }
+.atal-argia { background-color: #eef4ff; }                  /* fondo azul claro */
+.atal-iluna { background-color: #14263f; color: #ffffff; }  /* fondo azul oscuro */
+.atal-iluna h2, .atal-iluna h3 { color: #ffffff; }
+/* Primera sección de una página sin banner: deja sitio al menú flotante */
+.atal-hasiera { padding-top: 8rem; }
+
+/* Contenido centrado con ancho máximo dentro de cada banda */
+.atal-edukia { max-width: 70rem; margin: 0 auto; }
+
+/* Etiqueta pequeña sobre cada título de sección */
+.atal-etiketa {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 3rem;
+  background-color: #ffffff;
+  border: 2px solid #d6e6ff;
+  color: #0a6cf5;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+}
+.atal-iluna .atal-etiketa { background-color: transparent; border-color: #0a6cf5; color: #ffffff; }
+
+/* Texto introductorio bajo el título */
+.atal-sarrera { max-width: 46rem; font-size: 1.1rem; margin-bottom: 2rem; }
+
+/* ---------- 3. GOIBURUA ETA NABIGAZIOA (burbuja flotante) ---------- */
+
+/* La cabecera NO tiene fondo: solo flota la burbuja del menú.
+   Margen negativo: el banner queda por debajo del menú (superpuesto). */
+.goiburua {
+  position: sticky; /* se queda visible al bajar */
+  top: 0;
+  z-index: 10;      /* por encima del contenido */
+  padding: 0.75rem 1rem;
+  margin-bottom: -6rem;
+}
+
+/* La burbuja: fondo blanco, muy redondeada y con sombra suave */
+.menu-nagusia {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0.5rem 0.75rem;
+  background-color: #ffffff;
+  border: 2px solid #d6e6ff;
+  border-radius: 2.5rem;
+  box-shadow: 0 0.5rem 2rem rgba(20, 38, 63, 0.18);
+}
+
+/* Listas del menú en horizontal (flex en el ul, nunca en el li) */
+.menu-ezkerra, .menu-eskuina {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+/* Logo del menú (SVG, proporciones originales) */
+.logoa-menua { display: block; height: 2.5rem; width: auto; margin: 0 1rem 0 0.75rem; }
+
+/* Enlaces del menú */
+.menu-estekak {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border-radius: 3rem;
+  color: #14263f;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.menu-estekak:hover { background-color: #eef4ff; color: #0a6cf5; }
+.menu-estekak:focus { outline: 3px solid #0a6cf5; }
+.menu-aktiboa { background-color: #eef4ff; color: #0a6cf5; }  /* página actual */
+
+/* "Saioa hasi" como botón azul */
+.menu-saioa { background-color: #0a6cf5; color: #ffffff; }
+.menu-saioa:hover { background-color: #14263f; color: #ffffff; }
+.hizkuntza-estekak { font-size: 0.85rem; }
+
+/* ---------- 4. BOTOIAK ---------- */
+
+/* Clase base de todos los botones (son enlaces <a>) */
+.botoia {
+  display: inline-block;
+  padding: 0.9rem 1.75rem;
+  border: 2px solid #0a6cf5;
+  border-radius: 3rem;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+/* Variante principal: azul eléctrico */
+.botoia-nagusia { background-color: #0a6cf5; color: #ffffff; }
+.botoia-nagusia:hover { background-color: #14263f; border-color: #14263f; }
+.botoia-nagusia:focus { outline: 3px solid #14263f; outline-offset: 3px; }
+.botoia-nagusia:active { background-color: #000000; }
+/* Variante secundaria: contorno */
+.botoia-bigarrena { background-color: #ffffff; color: #0a6cf5; }
+.botoia-bigarrena:hover { background-color: #eef4ff; }
+.botoia-bigarrena:focus { outline: 3px solid #14263f; outline-offset: 3px; }
+.botoia-bigarrena:active { background-color: #d6e6ff; }
+/* Variante blanca para fondos oscuros o azules */
+.botoia-zuria { background-color: #ffffff; color: #14263f; border-color: #ffffff; }
+.botoia-zuria:hover { background-color: #eef4ff; }
+.botoia-zuria:focus { outline: 3px solid #ffffff; outline-offset: 3px; }
+.botoia-zuria:active { background-color: #d6e6ff; }
+.botoi-multzoa { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+
+/* ---------- 5. BANNERRAK ---------- */
+
+/* Banner: la imagen es el propio fondo. Mientras no exista la imagen se ve el azul */
+.banner-nagusia {
+  display: flex;
+  align-items: center;
+  min-height: 80vh;
+  padding: 8rem 1.5rem 3rem;  /* arriba deja sitio al menú flotante */
+  background-color: #0a6cf5;
+  background-size: cover;      /* rellena y recorta */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* la imagen se queda quieta al hacer scroll; el contenido pasa por encima */
+  position: relative;          /* referencia para el filtro oscuro (::before) */
+  color: #ffffff;
+}
+/* Filtro suave sobre la imagen para que no destaque demasiado */
+.banner-nagusia::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(20, 38, 63, 0.3); /* azul oscuro al 30 % */
+}
+/* Una imagen por banner: se añaden en la carpeta irudiak/ (ruta desde el CSS) */
+.banner-hasiera     { background-image: url("../irudiak/banner-hasiera.jpg"); }
+.banner-praktikak   { background-image: url("../irudiak/banner-praktikak.jpg"); }
+.banner-bilatzailea { background-image: url("../irudiak/banner-bilatzailea.jpg"); }
+.banner-bloga       { background-image: url("../irudiak/banner-bloga.jpg"); }
+
+/* El contenido va por encima del filtro (position: relative lo coloca encima) */
+.banner-edukia { position: relative; width: 100%; max-width: 70rem; margin: 0 auto; }
+
+/* Panel de texto: fondo oscuro con transparencia para que se vea la imagen del banner */
+.banner-testua {
+  max-width: 40rem;
+  padding: 2.25rem;
+  background-color: rgba(20, 38, 63, 0.6); /* 60 %: se aprecia la imagen y el texto blanco sigue legible */
+  border-radius: 2rem;
+}
+.banner-testua p { font-size: 1.1rem; }
+.banner-testua .botoi-multzoa { margin-top: 1.5rem; }
+.banner-etiketa { display: inline-block; background-color: #0a6cf5; color: #ffffff; padding: 0.3rem 1rem; border-radius: 3rem; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem; }
+
+/* ---------- 6. IRUDIAK (fotos, mapas, iconos y logos) ---------- */
+
+/* Foto grande de "Nor gara": rellena su columna y recorta lo que sobra */
+.zutabea-irudia { display: flex; }
+.irudi-handia { display: block; flex: 1; width: 100%; min-height: 20rem; object-fit: cover; border-radius: 2rem; }
+/* Imagen superior de las tarjetas del blog */
+.irudi-txartela { display: block; width: 100%; height: 12rem; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem; }
+/* Mapa de cada territorio */
+.irudi-lurraldea { display: block; width: 100%; height: 11rem; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem; }
+/* Icono de cada GJH (ODS) */
+.gjh-ikonoa { display: block; width: 6rem; height: 6rem; border-radius: 1rem; margin-bottom: 1rem; }
+/* Logo de empresa colaboradora dentro del carrusel */
+.enpresa-irudia { display: block; max-width: 100%; max-height: 3rem; width: auto; height: auto; }
+
+/* ---------- 7. TXARTELAK (TARJETAS) ---------- */
+
+/* Contenedor flexible de tarjetas */
+.txartel-multzoa { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+
+/* Tarjeta base */
+.txartela {
+  flex: 1;
+  min-width: 15rem;
+  padding: 1.75rem;
+  background-color: #ffffff;
+  color: #14263f;
+  border: 2px solid #d6e6ff;
+  border-radius: 1.5rem;
+  box-shadow: 0 0.25rem 1.25rem rgba(20, 38, 63, 0.1); /* sombra suave */
+  transition: 0.3s;
+}
+.txartela:hover { border-color: #0a6cf5; }
+/* Tarjetas de planes: sombra más marcada */
+.txartela-plana { padding: 2rem; box-shadow: 0 0.5rem 2rem rgba(20, 38, 63, 0.18); }
+/* Plan central destacado en azul eléctrico */
+.txartela-nabarmena { background-color: #0a6cf5; color: #ffffff; border-color: #0a6cf5; box-shadow: 0 0.75rem 2.5rem rgba(10, 108, 245, 0.45); }
+.txartela-nabarmena h3, .txartela-nabarmena .prezioa { color: #ffffff; }
+.txartela-nabarmena:hover { border-color: #14263f; }
+.txartel-zenbakia { font-size: 3rem; font-weight: bold; color: #0a6cf5; line-height: 1; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+
+/* Panel grande (columnas de servicios) */
+.panela { display: flex; flex-direction: column; padding: 2rem; background-color: #eef4ff; border-radius: 2rem; }
+.panela .botoi-multzoa { margin-top: auto; padding-top: 1rem; }  /* el botón siempre abajo */
+.panela .txartel-multzoa { margin-bottom: 1rem; }
+/* Territorios en versión compacta (3 en fila, solo mapa y nombre) */
+.txartel-multzoa-txikia { gap: 0.75rem; }
+.txartel-multzoa-txikia .txartela { min-width: 14rem; padding: 0.75rem; text-align: center; box-shadow: none; }
+.txartel-multzoa-txikia .irudi-lurraldea { height: 5rem; margin-bottom: 0.5rem; }
+.txartel-multzoa-txikia h3 { font-size: 1rem; margin-bottom: 0; }
+.atal-argia .panela { background-color: #ffffff; }
+
+/* ---------- 8. CARRUSELAK (estáticos, solo CSS) ---------- */
+
+/* Fila horizontal; la siguiente tarjeta asoma para sugerir continuidad */
+.karrusela {
+  display: flex;
+  flex-wrap: nowrap;  /* una sola línea */
+  gap: 1.5rem;
+  overflow: hidden;   /* corta lo que no cabe: se ve parte de la siguiente */
+  padding: 0.5rem 0.5rem 1.5rem;
+}
+.karrusel-elementua { flex: 0 0 21rem; }
+.karrusel-elementua .txartela { height: 100%; }
+.testigantza-ikonoa { font-size: 4rem; font-weight: bold; color: #0a6cf5; line-height: 0.8; margin-bottom: 0.5rem; }
+.testigantza-nor { font-weight: bold; margin-bottom: 0; }
+.testigantza-mota { font-size: 0.9rem; color: #0a6cf5; font-weight: bold; margin-bottom: 0; }
+.enpresa-logoa { flex: 0 0 15rem; display: flex; justify-content: center; align-items: center; padding: 1.25rem 1.5rem; background-color: #ffffff; border: 2px solid #d6e6ff; border-radius: 1.5rem; box-shadow: 0 0.25rem 1.25rem rgba(20, 38, 63, 0.1); }
+
+/* ---------- 9. ZERBITZUAK (2 columnas) ---------- */
+
+/* Dos columnas en pantalla grande; apiladas en móvil gracias a wrap */
+.zutabeak { display: flex; flex-wrap: wrap; gap: 2rem; }
+.zutabea { flex: 1; min-width: 20rem; }
+.urratsak { display: flex; flex: 1; flex-direction: column; gap: 1rem; margin-bottom: 0.5rem; list-style: none; } /* flex:1 reparte el alto sobrante */
+.urratsa { display: flex; flex: 1; gap: 1rem; align-items: center; padding: 1rem; background-color: #ffffff; border-radius: 1.25rem; }
+.urrats-zenbakia { flex: 0 0 2.5rem; height: 2.5rem; display: flex; justify-content: center; align-items: center; background-color: #0a6cf5; color: #ffffff; border-radius: 50%; font-weight: bold; }
+.urratsa p { margin-bottom: 0.25rem; }
+
+/* ---------- 10. NOR GARA ETA GJH ATALA ---------- */
+.gjh5-txartela { border-top: 0.6rem solid #e64d00; }
+.gjh8-txartela { border-top: 0.6rem solid #9c002f; }
+.gjh10-txartela { border-top: 0.6rem solid #a75197; }
+.gjh-lotura { font-weight: bold; color: #0a6cf5; }
+.gjh-plana { margin-top: 2rem; padding: 2rem; background-color: #eef4ff; border-radius: 2rem; }
+.gjh-plana li { margin-left: 1.5rem; margin-bottom: 0.5rem; }
+.zerrenda { margin-left: 1.25rem; margin-bottom: 1rem; }
+.zerrenda li { margin-bottom: 0.35rem; }
+/* Subtítulos sueltos dentro de una sección: aire por encima */
+.atal-edukia > h3 { margin-top: 2.5rem; }
+
+/* ---------- 11. EREDU EKONOMIKOA ---------- */
+
+/* Aviso de datos hipotéticos, muy visible */
+.oharra-hipotetikoa { padding: 1rem 1.5rem; margin-bottom: 2rem; background-color: #ffffff; border-left: 0.6rem solid #0a6cf5; border-radius: 1rem; font-weight: bold; }
+.prezioa { font-size: 2.5rem; font-weight: bold; color: #0a6cf5; letter-spacing: -0.03em; margin-bottom: 0.25rem; }
+.prezioa-txikia { font-size: 0.9rem; font-weight: normal; letter-spacing: 0; }
+
+/* Tablas de datos */
+.taula-zabala { overflow-x: auto; margin-bottom: 1.5rem; border-radius: 1rem; } /* scroll lateral en móvil */
+table { width: 100%; border-collapse: collapse; background-color: #ffffff; color: #14263f;}
+table caption { text-align: left; font-weight: bold; padding: 0.75rem 0; }
+th, td { padding: 0.85rem; border: 2px solid #d6e6ff; text-align: left;}
+thead th { background-color: #0a6cf5; color: #ffffff; }
+tbody th { background-color: #eef4ff; color: #14263f; }
+
+/* Barras estáticas de comparación (el ancho sale de una clase, no de style) */
+.barra-lerroa { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+.barra-izena { flex: 0 0 6rem; font-weight: bold; margin-bottom: 0; }
+.barra-pista { flex: 1; background-color: #ffffff; border-radius: 3rem; }
+.barra { padding: 0.6rem 1.25rem; border-radius: 3rem; background-color: #0a6cf5; color: #ffffff; font-weight: bold; white-space: nowrap; }
+.barra-34 { width: 34%; min-width: 11rem; }
+.barra-100 { width: 100%; }
+
+/* ---------- 12. ERRESERBAK ETA KONTAKTUA ---------- */
+
+/* Calendario estático: 7 columnas con flex-wrap */
+.egutegia { padding: 1.75rem; background-color: #ffffff; border: 2px solid #d6e6ff; border-radius: 2rem; }
+.egutegi-hilabetea { text-align: center; }
+.egutegi-zerrenda { display: flex; flex-wrap: wrap; list-style: none;}
+.egutegi-eguna { flex: 0 0 14.28%; text-align: center; padding: 0.5rem 0; margin-bottom: 0.25rem; border-radius: 3rem; }
+.egutegi-astekoa { font-weight: bold; color: #0a6cf5; }
+.egutegi-hutsa { background-color: transparent; }
+/* Día no disponible: gris + tachado (no depende solo del color) */
+.egutegi-ezin { color: #595959; text-decoration: line-through; }
+/* Día disponible: borde azul y negrita */
+.egutegi-libre { border: 2px solid #0a6cf5; background-color: #eef4ff; font-weight: bold; }
+.ordutegi-multzoa { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 1rem; }
+.ordutegia { padding: 0.5rem 1.25rem; border: 2px solid #0a6cf5; border-radius: 3rem; font-weight: bold; color: #0a6cf5; }
+
+/* Formulario de aspecto estático (no es un form real) */
+.formulario-itxura { padding: 1.75rem; background-color: #ffffff; border: 2px solid #d6e6ff; border-radius: 2rem; }
+.eremua { margin-bottom: 1rem; }
+.eremu-etiketa { font-weight: bold; margin-bottom: 0.25rem; }
+.eremu-kutxa { min-height: 2.9rem; padding: 0.6rem 1rem; border: 2px solid #14263f; border-radius: 1rem; background-color: #ffffff; color: #595959; }
+.eremu-handia { min-height: 6rem; }
+.eremu-igoera { min-height: 6rem; display: flex; justify-content: center; align-items: center; text-align: center; padding: 1rem; border: 3px dashed #0a6cf5; border-radius: 1rem; background-color: #eef4ff; font-weight: bold; }
+.aukera-multzoa { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.aukera { padding: 0.5rem 1.1rem; border: 2px solid #14263f; border-radius: 3rem; background-color: #ffffff; }
+
+/* Mensaje "no disponible" */
+.mezu-ez-erabilgarri { margin-top: 2rem; padding: 1.5rem; text-align: center; background-color: #14263f; color: #ffffff; border-radius: 2rem; font-size: 1.25rem; font-weight: bold; }
+.mezu-ez-erabilgarri p { margin-bottom: 0; }
+
+/* Datos de contacto (placeholders) sobre fondo oscuro */
+.kontaktu-datuak { list-style: none; max-width: 40rem; }
+.kontaktu-datuak li { padding: 1rem 0; border-bottom: 2px solid #d6e6ff; }
+
+/* ---------- 13. BLOGA ---------- */
+.blog-txartela { flex: 1; min-width: 17rem; }
+.blog-kategoria { display: inline-block; background-color: #eef4ff; color: #0a6cf5; padding: 0.25rem 1rem; border-radius: 3rem; font-size: 0.85rem; font-weight: bold; }
+.blog-data { font-size: 0.9rem; color: #404040; }
+.kategoria-zerrenda { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; }
+.atal-argia .blog-kategoria { background-color: #ffffff; }
+
+/* ---------- 14. SAIOA HASI ---------- */
+.saioa-orrialdea { background-color: #eef4ff; }
+.saioa-nagusia { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 2rem 1rem; }
+.saioa-kutxa { width: 100%; max-width: 28rem; padding: 2.5rem; background-color: #ffffff; border: 2px solid #d6e6ff; border-radius: 2rem; text-align: center; }
+.saioa-kutxa h1 { font-size: 2rem; }
+.saioa-kutxa .eremu-etiketa, .saioa-kutxa .eremu-kutxa { text-align: left; }
+.saioa-logoa { display: block; width: 14rem; height: auto; margin: 0 auto 1.5rem; }
+.saioa-botoia { display: block; margin-bottom: 1rem; }
+
+/* ---------- 15. FOOTERRA ---------- */
+.oina { padding: 3rem 1.5rem 1.5rem; background-color: #14263f; color: #ffffff; }
+.oina-edukia { display: flex; flex-wrap: wrap; gap: 2.5rem; max-width: 70rem; margin: 0 auto 2rem; }
+.oina-zutabea { flex: 1; min-width: 14rem; }
+.oina-logoa { display: block; width: 12rem; height: auto; margin-bottom: 1.25rem; }  /* logo en versión clara */
+.oina-izenburua { font-weight: bold; font-size: 1.1rem; }
+.oina-zerrenda { list-style: none; }
+.oina-zerrenda li { margin-bottom: 0.5rem; }
+.oina a { color: #ffffff; }
+.oina a:hover { color: #d6e6ff; }
+.oina a:focus { outline: 3px solid #ffffff; }
+.oina-copyright { text-align: center; border-top: 2px solid #0a6cf5; padding-top: 1.25rem; margin-bottom: 0; }

@@ -1,159 +1,293 @@
 <!DOCTYPE html>
-<!-- Landing page de PRAKTIP: banner, testimonios, servicios (mapa real y agente), quiénes somos, ODS y análisis económico. -->
 <html lang="eu">
+<!-- DOKUMENTUAREN EGITURA: head (konfigurazioa) + body (eduki ikusgarria) -->
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>PRAKTIP</title>
-  <!-- Tipografías de Google Fonts: Outfit (títulos) y Figtree (texto) -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
-  <!-- Hoja de estilos única de la web -->
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRAKTIP · Zure etorkizun profesionala hemen hasten da</title>
+  <!-- Favicon: icono.svg -->
+  <link rel="icon" type="image/svg+xml" href="irudiak/icono.svg">
+  <!-- Hoja de estilos externa compartida -->
+  <link rel="stylesheet" href="estiloak/estiloak.css">
 </head>
 <body>
-<!-- Fondo fijo con degradados (decorativo) -->
-<div class="bg"></div>
+  <!-- GOIBURUA ETA NABIGAZIO MENUA: sticky, beti ikusgai -->
+  <header class="goiburua">
+    <nav class="menu-nagusia" aria-label="Nabigazio nagusia">
+      <!-- Ezkerra: logoa + orrialde nagusiak -->
+      <ul class="menu-ezkerra">
+        <li><a href="index.html"><img class="logoa-menua" src="irudiak/logo.svg" alt="PRAKTIP logoa - hasierara joan" width="228" height="50"></a></li>
+        <li><a class="menu-estekak menu-aktiboa" href="index.html" aria-current="page">Hasiera</a></li>
+        <li><a class="menu-estekak" href="praktikak.html">Praktikak lortzen dizkizugu</a></li>
+        <li><a class="menu-estekak" href="bilatzailea.html">Praktiken bilatzaile adimenduna</a></li>
+        <li><a class="menu-estekak" href="bloga.html">Bloga</a></li>
+      </ul>
+      <!-- Eskuina: saioa hasi + hizkuntzak -->
+      <ul class="menu-eskuina">
+        <li><a class="menu-estekak menu-saioa" href="saioa-hasi.html">Saioa hasi</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<!-- ============ CABECERA (barra fija, igual en todas las páginas) ============ -->
-<header class="nav">
-  <!-- Píldora izquierda: logo (icono de PRAKTIP) + menú principal + hamburguesa (móvil) -->
-  <div class="nb g">
-    <a class="logo" href="index.html" aria-label="PRAKTIP"><img class="logo-ic" src="img/icono.svg" alt="" width="43" height="32"><span>PRAKTIP</span></a>
-    <nav class="links" aria-label="Main"><a class="nl on" href="index.html" aria-current="page" data-i18n="home"></a><a class="nl" href="practicas.html" data-i18n="prac"></a><a class="nl" href="buscador.html" data-i18n="find"></a><a class="nl" href="blog.html" data-i18n="blog"></a></nav>
-    <button class="nl burger" id="burger" aria-expanded="false" aria-controls="dd" aria-label="Menu" data-ic="menu"></button>
-  </div>
-  <!-- Píldora derecha: acceso al login + selector de idioma EU/ES (main.js lo gestiona) -->
-  <div class="nb g r">
-    <a class="nl hm" href="login.html" data-i18n="login"></a>
-    <div class="sw" role="group" aria-label="Language"><button data-lang="eu">EU</button><button data-lang="es">ES</button></div>
-  </div>
-  <!-- Menú desplegable de móvil (oculto hasta pulsar la hamburguesa) -->
-  <nav class="dd g" id="dd" aria-label="Mobile" hidden><a class="nl on" href="index.html" aria-current="page" data-i18n="home"></a><a class="nl" href="practicas.html" data-i18n="prac"></a><a class="nl" href="buscador.html" data-i18n="find"></a><a class="nl" href="blog.html" data-i18n="blog"></a><a class="nl" href="login.html" data-i18n="login"></a></nav>
-</header>
+  <!-- EDUKI NAGUSIA -->
+  <main>
 
-<main class="pg">
-<!-- ============ BANNER PRINCIPAL (hero) ============ -->
-<section class="hero">
-  <!-- Columna izquierda: titular, subtítulo y botón que baja a «services» -->
-  <div class="ht">
-    <h1 data-i18n="h1"></h1>
-    <p class="lead" data-i18n="sub"></p>
-    <a class="btn big" href="#services" data-i18n="cta"></a>
-  </div>
-  <!-- Columna derecha: dibujo animado. Líneas discontinuas que unen 3 nodos con el nodo central -->
-  <div class="art" aria-hidden="true">
-    <svg>
-      <line x1="20%" y1="20%" x2="50%" y2="50%"/>
-      <line x1="80%" y1="16%" x2="50%" y2="50%"/>
-      <line x1="50%" y1="88%" x2="50%" y2="50%"/>
-    </svg>
-    <div class="node g n1" data-ic="cap" data-s="36"></div>   <!-- nodo: estudiante -->
-    <div class="node g n2" data-ic="build" data-s="36"></div> <!-- nodo: empresa -->
-    <div class="node g n3" data-ic="school" data-s="36"></div><!-- nodo: centro educativo -->
-    <!-- Nodo central: AQUÍ va el icono de PRAKTIP (sustituye a la antigua estrellita) -->
-    <div class="node g m n4"><img class="ic-big" src="img/icono.svg" alt="PRAKTIP"></div>
-  </div>
-</section>
+    <!-- BANNER NAGUSIA: la irudia CSSko atzealdea da (banner-hasiera); testua panel batean -->
+    <section class="banner-nagusia banner-hasiera" id="banner">
+      <div class="banner-edukia">
+        <div class="banner-testua">
+          <p class="banner-etiketa">Lanbide Heziketa + enpresak + teknologia</p>
+          <h1>Zure etorkizun profesionala hemen hasten da</h1>
+          <p>Igo zure curriculuma, aukeratu non eta zer ikasten duzun, eta gure agente adimendunak zure prestakuntzarekin bat datozen praktikak bilatuko ditu. Eta enpresekin ditugun hitzarmenei esker, ate gehiago irekitzen ditugu zuretzat.</p>
+          <div class="botoi-multzoa"><a class="botoia botoia-zuria" href="bilatzailea.html#doako-proba">Probatu doan</a></div>
+        </div>
+      </div>
+    </section>
 
-<!-- ============ TESTIMONIOS (marquesina; las tarjetas las crea home.js) ============ -->
-<section class="sec c nopb"><h2 data-i18n="tt"></h2><span class="tag" data-i18n="demo"></span></section>
-<div class="mq mq-t"><div class="mt slow" id="testi"></div></div>
+    <!-- ATALA: Zer diote gure erabiltzaileek -->
+    <section id="iritziak" class="atal atal-argia">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Iritziak</p>
+        <h2>Zer diote gure erabiltzaileek</h2>
+      <p>Adibide fikziozko testigantzak dira, ez benetako iritziak.</p>
+      <!-- Testigantzen carrusela (estatikoa) -->
+      <div class="karrusela">
+        <article class="karrusel-elementua"><div class="txartela">
+          <p class="testigantza-ikonoa" aria-hidden="true">&ldquo;</p>
+          <p>Curriculuma igo, eta minutu gutxitan nire ikasketekin bat zetozen eskaintzak jaso nituen.</p>
+          <p class="testigantza-nor">Ikaslea 1</p>
+          <p class="testigantza-mota">Ikaslea</p>
+        </div></article>
+        <article class="karrusel-elementua"><div class="txartela">
+          <p class="testigantza-ikonoa" aria-hidden="true">&ldquo;</p>
+          <p>Kokapena aukeratzeak asko erraztu zidan etxetik gertu praktikak aurkitzea.</p>
+          <p class="testigantza-nor">Ikaslea 2</p>
+          <p class="testigantza-mota">Ikaslea</p>
+        </div></article>
+        <article class="karrusel-elementua"><div class="txartela">
+          <p class="testigantza-ikonoa" aria-hidden="true">&ldquo;</p>
+          <p>Ikasle guztien eskaerak toki bakar batean jarraitzeak denbora asko aurrezten dit.</p>
+          <p class="testigantza-nor">Irakaslea 1</p>
+          <p class="testigantza-mota">Irakaslea</p>
+        </div></article>
+        <article class="karrusel-elementua"><div class="txartela">
+          <p class="testigantza-ikonoa" aria-hidden="true">&ldquo;</p>
+          <p>Agenteak proposatutako eskaintzak erabilgarriak dira eta nire taldearen profilei egokitzen zaizkie.</p>
+          <p class="testigantza-nor">Irakaslea 2</p>
+          <p class="testigantza-mota">Irakaslea</p>
+        </div></article>
+        <article class="karrusel-elementua"><div class="txartela">
+          <p class="testigantza-ikonoa" aria-hidden="true">&ldquo;</p>
+          <p>Enpresekin koordinatzeko panel orokorra eta txostenak oso lagungarriak dira.</p>
+          <p class="testigantza-nor">Ikastetxea 1</p>
+          <p class="testigantza-mota">Ikastetxea</p>
+        </div></article>
+        <article class="karrusel-elementua"><div class="txartela">
+          <p class="testigantza-ikonoa" aria-hidden="true">&ldquo;</p>
+          <p>Hitzarmenei esker, gure ikasleek aukera gehiago dituzte lurralde guztietan.</p>
+          <p class="testigantza-nor">Ikastetxea 2</p>
+          <p class="testigantza-mota">Ikastetxea</p>
+        </div></article>
+      </div>
+      </div>
+    </section>
 
-<!-- ============ SERVICIOS: mapa de empresas + agente inteligente ============ -->
-<section class="svc" id="services">
-  <!-- Mitad izquierda: acuerdos con empresas + MAPA REAL (Leaflet, lo crea map.js en #map-home) -->
-  <div class="half g l">
-    <h2 data-i18n="s1t"></h2>
-    <p class="lead" data-i18n="s1s"></p>
-    <span class="tag" data-i18n="dn"></span>
-    <div id="map-home"></div>
-    <a class="btn mint" href="practicas.html#book" data-i18n="call"></a>
-  </div>
-  <!-- Mitad derecha: pasos del agente (los pinta home.js en #steps) -->
-  <div class="half g rt">
-    <h2 data-i18n="s2t"></h2>
-    <p class="lead" data-i18n="s2s"></p>
-    <div class="steps" id="steps"></div>
-    <a class="btn" href="buscador.html#trial" data-i18n="cta"></a>
-  </div>
-</section>
+    <!-- ATALA: PRAKTIPen zerbitzu nagusiak -->
+    <section id="zerbitzuak" class="atal">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Zerbitzuak</p>
+        <h2>PRAKTIPen zerbitzu nagusiak</h2>
+      <p class="atal-sarrera">Praktikak bilatzeko bi bide eskaintzen ditugu.</p>
+        <!-- Bi zutabe: hitzarmenak (ezkerra) eta bilatzaile adimenduna (eskuina) -->
+        <div class="zutabeak">
+          <article class="zutabea panela">
+            <h3>Praktikak lortzen dizkizugu gure enpresekin ditugun hitzarmenei esker</h3>
+            <p>PRAKTIPek Euskadiko enpresekin dituen hitzarmenen bidez, ikasleei praktikak lortzen laguntzen die.</p>
+        <!-- Lurralde historikoen txartelak (mapa interaktiborik gabe, irudi estatikoak) -->
+        <div class="txartel-multzoa txartel-multzoa-txikia">
+          <article class="txartela">
+            <img class="irudi-lurraldea" src="irudiak/araba.png" alt="Mapa: Araba" width="900" height="400">
+            <h3>Araba</h3>
+          </article>
+          <article class="txartela">
+            <img class="irudi-lurraldea" src="irudiak/bizkaia.png" alt="Mapa: Bizkaia" width="900" height="400">
+            <h3>Bizkaia</h3>
+          </article>
+          <article class="txartela">
+            <img class="irudi-lurraldea" src="irudiak/gipuzkoa.png" alt="Mapa: Gipuzkoa" width="900" height="400">
+            <h3>Gipuzkoa</h3>
+          </article>
+        </div>
+            <div class="botoi-multzoa"><a class="botoia botoia-nagusia" href="praktikak.html#erreserba">Antolatu doako bilera bat</a></div>
+          </article>
+          <article class="zutabea panela">
+            <h3>Bilatu praktikak gure agente adimendunaren bidez</h3>
+            <p>Zure curriculuma, ikasketak eta kokapen geografikoa zehaztuko dituzu, eta agenteak praktikak bilatzeko prozesua erraztuko du.</p>
+            <ol class="urratsak">
+          <li class="urratsa"><span class="urrats-zenbakia" aria-hidden="true">1</span><div><p><strong>urratsa 1: Igo zure curriculuma.</strong></p><p>Curriculum dokumentuaren irudia edo ikonoa.</p></div></li>
+          <li class="urratsa"><span class="urrats-zenbakia" aria-hidden="true">2</span><div><p><strong>urratsa 2: Zehaztu zure bilaketa.</strong></p><p>Aukeratu kokapen geografikoa eta egiten ari zaren FP edo unibertsitate-ikasketak.</p></div></li>
+          <li class="urratsa"><span class="urrats-zenbakia" aria-hidden="true">3</span><div><p><strong>urratsa 3: Utzi agente adimendunari lan egiten.</strong></p><p>Agenteak praktikak bilatu, aukera egokiak aztertu eta zure curriculumaren informazioan oinarritutako mezu pertsonalizatu bat prestatzen du.</p></div></li>
+            </ol>
+            <div class="botoi-multzoa"><a class="botoia botoia-nagusia" href="bilatzailea.html#doako-proba">Probatu doan</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<!-- ============ QUIÉNES SOMOS ============ -->
-<section class="sec ab">
-  <!-- Texto -->
-  <div><h2 data-i18n="abT"></h2><p data-i18n="p1"></p><p data-i18n="p2"></p></div>
-  <!-- Recuadro con FOTO de personas de fondo (variable --photo) y los 3 nodos de cristal encima.
-       Foto: Unsplash (Vitaly Gariev), licencia libre. Si no carga, se ve un degradado. -->
-  <div class="tri photo" style="--photo:url('https://images.unsplash.com/photo-1758270705290-62b6294dd044?auto=format&fit=crop&w=1000&q=70')" aria-hidden="true">
-    <svg width="100%" height="100%" viewBox="0 0 300 300">
-      <g><line x1="80" y1="90" x2="220" y2="90"/><line x1="80" y1="90" x2="150" y2="220"/><line x1="220" y1="90" x2="150" y2="220"/></g>
-    </svg>
-    <div class="node g a1" data-ic="cap" data-s="34"></div>
-    <div class="node g a2" data-ic="build" data-s="34"></div>
-    <div class="node g a3" data-ic="school" data-s="34"></div>
-  </div>
-</section>
+    <!-- ATALA: Nor gara? -->
+    <section id="nor-gara" class="atal atal-argia">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Gure istorioa</p>
+        <h2>Nor gara?</h2>
+        <div class="zutabeak">
+          <div class="zutabea">
+            <p><strong>PRAKTIP</strong> ikasenpresa bat da, eta haren helburua Lanbide Heziketako ikasleen eta praktikak eskaintzen dituzten enpresen arteko bitartekaritza egitea da. PRAKTIPek praktikak bilatzeko bi bide eskaintzen ditu: adimen artifizialeko agenteen bidezko bilaketa eta hautaketa, eta enpresekin zuzenean egindako hitzarmen eta kontratuen bidezko lankidetza.</p>
+            <p>Gure zerbitzua hiru erabiltzaile motari zuzentzen zaie:</p>
+            <ul class="zerrenda">
+              <li>praktiketan ikasleak hartu nahi dituzten enpresei;</li>
+              <li>beren ikasleentzako praktikak bilatzen dituzten irakasleei;</li>
+              <li>beren ikasleentzat praktikak aurkitu nahi dituzten ikastetxeei.</li>
+            </ul>
+            <p>Horren bidez, bilaketa-prozesua errazten dugu, eskaintzak eta hautagaiak hobeto lotzen ditugu, eta ikasleen lan-munduratzea sustatzen dugu.</p>
+          </div>
+          <div class="zutabea zutabea-irudia"><img class="irudi-handia" src="irudiak/quienes-somos.jpg" alt="Hiru gazte irribarretsu, ordenagailu eramangarriekin mahai batean" width="992" height="805"></div>
+        </div>
+      </div>
+    </section>
 
-<!-- ============ NUEVO · GURE GJH HELBURUAK (los 3 ODS de PRAKTIP) ============
-     Contenido basado en el «Plan de sostenibilidad» (ODS 5, 8 y 10).
-     Banda con foto de personas de fondo (Pexels, licencia libre) atenuada con un velo claro. -->
-<div class="band" id="gjh" style="--photo:url('https://images.pexels.com/photos/3184663/pexels-photo-3184663.jpeg?auto=compress&cs=tinysrgb&w=1600')">
-  <section class="sec">
-    <div class="gj-head"><h2 data-i18n="gjT"></h2><p class="lead" data-i18n="gjS"></p></div>
-    <!-- Las 3 tarjetas (imagen oficial del ODS + título + frase) las genera home.js -->
-    <div class="gj-grid" id="gj-grid"></div>
-  </section>
-</div>
+    <!-- ATALA: Gure GJH konpromezua -->
+    <section id="gjh" class="atal">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">GJH · ODS</p>
+        <h2>Gure GJH konpromezua</h2>
+      <p class="atal-sarrera">Garapen Jasangarrirako Helburuen (GJH) artetik hiru aukeratu ditugu, PRAKTIPen eragin sozial eta ekonomikoarekin bat datozenak.</p>
+        <!-- Hiru GJH txartel bereizi -->
+        <div class="txartel-multzoa">
+          <article class="txartela gjh5-txartela">
+            <img class="gjh-ikonoa" src="irudiak/ods5.webp" alt="5. GJH ikonoa: Genero-berdintasuna" width="96" height="96">
+            <p class="txartel-zenbakia">5. GJH</p>
+            <h3>Genero-berdintasuna</h3>
+            <p class="gjh-lotura">Praktikak eskuratzeko aukera berdinak eta hautaketa-irizpideetan genero-alborapenik ez izatea.</p>
+            <p>PRAKTIPek ikasle guztiei praktikak eskuratzeko aukera berdinak eskaini nahi dizkie, generoa edozein dela ere. Eskaintzak zabaltzeko eta hautagaiak gomendatzeko irizpideek ez dute generoagatiko bereizketarik eragin behar. Adimen artifizialeko agenteek irizpide objektiboak eta lanpostuarekin lotutako gaitasunak lehenetsi behar dituzte.</p>
+          </article>
+          <article class="txartela gjh8-txartela">
+            <img class="gjh-ikonoa" src="irudiak/ods8.webp" alt="8. GJH ikonoa: Lan duina eta hazkunde ekonomikoa" width="96" height="96">
+            <p class="txartel-zenbakia">8. GJH</p>
+            <h3>Lan duina eta hazkunde ekonomikoa</h3>
+            <p class="gjh-lotura">Kalitatezko praktikak sustatzea eta enpresei talentu berria aurkitzen laguntzea.</p>
+            <p>PRAKTIPek enpresen eta ikasleen arteko harremana errazten du, ikasleei prestakuntzarekin lotutako lan-esperientzia lortzen lagunduz. Praktikak kalitatezkoak, seguruak eta ikaskuntza-helburuekin bat datozenak izatea sustatu nahi da.</p>
+          </article>
+          <article class="txartela gjh10-txartela">
+            <img class="gjh-ikonoa" src="irudiak/ods10.png" alt="10. GJH ikonoa: Desberdintasunak murriztea" width="96" height="96">
+            <p class="txartel-zenbakia">10. GJH</p>
+            <h3>Desberdintasunak murriztea</h3>
+            <p class="gjh-lotura">Ikasle eta ikastetxe guztiei zerbitzua eskuragarri jartzea, haien egoera eta beharrak kontuan hartuta.</p>
+            <p>PRAKTIPen bidez, praktikak aurkitzeko zailtasun handiagoak izan ditzaketen ikasleei aukerak hurbildu nahi zaizkie. Informaziorako eta praktiketarako sarbidea erraztu nahi da, irisgarritasuna eta tratu-berdintasuna kontuan hartuz.</p>
+          </article>
+        </div>
+        <!-- Ekintza-plana eta jarraipena (laburpena) -->
+        <div class="gjh-plana">
+          <h3>Ekintza-plana eta jarraipena</h3>
+          <ul>
+            <li>Sei ekintza daude, hiru taldekideren artean banatuta, bakoitza bere epearekin eta arduradunarekin.</li>
+            <li>Jarraipena kontrol-taula partekatu baten bidez egiten da; ebidentziak karpeta digital batean gordetzen dira.</li>
+            <li>Aurrekontua orientagarria da: guztizko estimatua 20 € (ezustekoetarako aurreikuspena); gainerako ekintzak doako tresnekin eta barne-lanarekin egingo dira.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-<!-- ============ NUEVO · AZTERKETA EKONOMIKOA (análisis económico) ============
-     Cifras de la hoja «Azterketa» del Excel del modelo económico (datos hipotéticos, ver ECO en data.js).
-     Las tablas y los gráficos SVG los dibujan economia.js y charts.js. -->
-<div class="band" id="azterketa" style="--photo:url('https://images.pexels.com/photos/3184356/pexels-photo-3184356.jpeg?auto=compress&cs=tinysrgb&w=1600')">
-  <section class="sec">
-    <div class="eco-head">
-      <h2 data-i18n="ecT"></h2>
-      <p class="lead" data-i18n="ecS"></p>
-      <span class="tag" data-i18n="dn"></span>
+    <!-- ATALA: Eredu ekonomikoa -->
+    <section id="eredu-ekonomikoa" class="atal atal-argia">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Harpidetzak</p>
+        <h2>Eredu ekonomikoa</h2>
+        <p class="oharra-hipotetikoa">Garrantzitsua: prezioak eta salmenta-zifrak hipotetikoak eta orientagarriak dira. Simulazioak dira, ez benetako salmentak edo egiaztatutako aurreikuspen ekonomikoak.</p>
+        <p>PRAKTIPen eredu ekonomikoa urteko harpidetza-planetan oinarritzen da. Harpidetza guztiak urtekoak dira: prezioa urtean behin kobratzen da, harpidetza hasten denean, eta urtero berritzen da.</p>
+        <div class="txartel-multzoa">
+          <article class="txartela txartela-plana"><h3>Plana: Ikaslea</h3><p class="prezioa">19,88 € <span class="prezioa-txikia">/ urtea (hipotetikoa)</span></p></article>
+          <article class="txartela txartela-plana txartela-nabarmena"><h3>Plana: Irakaslea</h3><p class="prezioa">99,88 € <span class="prezioa-txikia">/ urtea (hipotetikoa)</span></p></article>
+          <article class="txartela txartela-plana"><h3>Plana: Ikastetxea</h3><p class="prezioa">588,88 € <span class="prezioa-txikia">/ urtea (hipotetikoa)</span></p></article>
+        </div>
+        <h3>Fakturazioaren konparazioa (hipotetikoa)</h3>
+        <!-- Barra estatikoak -->
+        <div class="barra-lerroa"><p class="barra-izena">1. urtea</p><div class="barra-pista"><div class="barra barra-34">8.819,08 €</div></div></div>
+        <div class="barra-lerroa"><p class="barra-izena">2. urtea</p><div class="barra-pista"><div class="barra barra-100">25.796,84 € (+%192,5)</div></div></div>
+        <div class="taula-zabala"><table>
+          <caption>1. eta 2. urteko simulazioa: adierazle nagusiak</caption>
+          <thead><tr><th scope="col">Adierazlea</th><th scope="col">1. urtea</th><th scope="col">2. urtea</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Alta berriak guztira</th><td>216</td><td>505</td></tr>
+            <tr><th scope="row">Berritzeak guztira</th><td>0</td><td>163</td></tr>
+            <tr><th scope="row">Bajak guztira</th><td>0</td><td>53</td></tr>
+            <tr><th scope="row">Bezero aktiboak (Ikaslea / Irakaslea / Ikastetxea)</th><td>190 / 21 / 5</td><td>591 / 64 / 13</td></tr>
+            <tr><th scope="row">Fakturazioa plan bakoitzeko (Ikaslea / Irakaslea / Ikastetxea)</th><td>3.777,20 € / 2.097,48 € / 2.944,40 €</td><td>11.749,08 € / 6.392,32 € / 7.655,44 €</td></tr>
+            <tr><th scope="row">Urteko diru-sarrera errepikaria (ARR) itxieran</th><td>8.819,08 €</td><td>25.796,84 €</td></tr>
+          </tbody>
+        </table></div>
+        <p>2. urtean, iraungitako 216 harpidetzetatik 163 berritu dira (%75,5eko berritze-tasa simulatua).</p>
+        <div class="taula-zabala"><table>
+          <caption>24 hilabeteko bilakaera (hautatutako uneak, hipotetikoak)</caption>
+          <thead><tr><th scope="col">Unea</th><th scope="col">Bezero aktiboak guztira</th><th scope="col">Fakturazio metatua</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">6. hilabetea</th><td>89</td><td>3.627,32 €</td></tr>
+            <tr><th scope="row">12. hilabetea</th><td>216</td><td>8.819,08 €</td></tr>
+            <tr><th scope="row">18. hilabetea</th><td>428</td><td>20.456,96 €</td></tr>
+            <tr><th scope="row">24. hilabetea</th><td>668</td><td>34.615,92 €</td></tr>
+          </tbody>
+        </table></div>
+        <div class="botoi-multzoa"><a class="botoia botoia-bigarrena" href="bilatzailea.html#planak">Ikusi planak</a></div>
+      </div>
+    </section>
+
+    <!-- ATALA: Jarri gurekin harremanetan -->
+    <section id="kontaktua" class="atal">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Kontaktua</p>
+        <h2>Jarri gurekin harremanetan</h2>
+      <p class="atal-sarrera">Zalantzaren bat duzu? Idatzi iezaguzu eta lehenbailehen erantzungo dizugu.</p>
+        <div class="zutabeak">
+          <div class="zutabea">
+            <ul class="kontaktu-datuak">
+              <li><strong>Posta elektronikoa:</strong> [gero gehitzeko tokia]</li>
+              <li><strong>Telefonoa:</strong> [gero gehitzeko tokia]</li>
+              <li><strong>Bestelako informazioa:</strong> [beharrezkoa bada, hemen]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTERRA: logoa, deskribapena, estekak, kontaktua, copyright -->
+  <footer class="oina">
+    <div class="oina-edukia">
+      <div class="oina-zutabea">
+        <img class="oina-logoa" src="irudiak/logo-claro.svg" alt="PRAKTIP logoa" width="192" height="42">
+        <p>PRAKTIP Lanbide Heziketako ikasleak eta praktikak eskaintzen dituzten enpresak lotzen dituen ikasenpresa da.</p>
+      </div>
+      <div class="oina-zutabea">
+        <p class="oina-izenburua">Orrialdeak</p>
+        <ul class="oina-zerrenda">
+          <li><a href="index.html">Hasiera</a></li>
+          <li><a href="praktikak.html">Praktikak lortzen dizkizugu</a></li>
+          <li><a href="bilatzailea.html">Praktiken bilatzaile adimenduna</a></li>
+          <li><a href="bloga.html">Bloga</a></li>
+          <li><a href="index.html#gjh">Gure GJH konpromezua</a></li>
+          <li><a href="index.html#eredu-ekonomikoa">Eredu ekonomikoa</a></li>
+        </ul>
+      </div>
+      <div class="oina-zutabea">
+        <p class="oina-izenburua">Kontaktua</p>
+        <!-- Placeholder-ak: gero benetako datuak jarri -->
+        <ul class="oina-zerrenda">
+          <li>[Posta elektronikoaren tokia]</li>
+          <li>[Telefonoaren tokia]</li>
+          <li><a href="index.html#kontaktua">Kontaktu-atala</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="eco-grid">
-      <!-- Tabla 1: indicadores principales -->
-      <div class="eco-card g"><h3 data-i18n="ecK"></h3><div class="tw"><table class="tbl" id="eco-kpi"></table></div></div>
-      <!-- Tabla 2: facturación por plan -->
-      <div class="eco-card g"><h3 data-i18n="ecP"></h3><div class="tw"><table class="tbl" id="eco-plan"></table></div></div>
-      <!-- Gráfico 1: barras, facturación mensual año 1 vs año 2 (a todo el ancho) -->
-      <div class="eco-card g wide"><h3 data-i18n="ecC1"></h3><div class="chart" id="ch-month"></div><div class="legend" id="lg-month"></div></div>
-      <!-- Gráfico 2: anillo, reparto de la facturación del año 2 por plan -->
-      <div class="eco-card g"><h3 data-i18n="ecC2"></h3><div class="chart" id="ch-plan"></div><div class="legend" id="lg-plan"></div></div>
-      <!-- Gráfico 3: línea, facturación acumulada en 24 meses -->
-      <div class="eco-card g"><h3 data-i18n="ecC3"></h3><div class="chart" id="ch-cum"></div></div>
-    </div>
-    <p class="eco-note" data-i18n="ecN"></p>
-  </section>
-</div>
-</main>
-
-<!-- ============ PIE DE PÁGINA ============ -->
-<footer class="g">
-  <div class="fg">
-    <!-- Columna 1: logo y descripción -->
-    <div><a class="logo flogo" href="index.html" aria-label="PRAKTIP"><img class="logo-ic" src="img/icono.svg" alt="" width="43" height="32"><span>PRAKTIP</span></a><p data-i18n="fd"></p></div>
-    <!-- Columna 2: navegación -->
-    <div><b data-i18n="nv"></b><a href="index.html" data-i18n="home"></a><a href="practicas.html" data-i18n="prac"></a><a href="buscador.html" data-i18n="find"></a><a href="blog.html" data-i18n="blog"></a><a href="login.html" data-i18n="login"></a></div>
-    <!-- Columna 3: contacto (ejemplo) y selector de idioma -->
-    <div><b data-i18n="ct"></b><p>info@praktip.example<br><span data-i18n="ex"></span></p>
-      <div class="sw fsw" role="group" aria-label="Language"><button data-lang="eu">EU</button><button data-lang="es">ES</button></div></div>
-  </div>
-  <p class="c copy">© 2026 PRAKTIP. <span data-i18n="rt"></span> · <span data-i18n="ph"></span></p>
-</footer>
-
-<!-- Scripts (orden importante): datos → lógica común → resto de la página -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
-<script src="js/map.js"></script>
-<script src="js/charts.js"></script>
-<script src="js/economia.js"></script>
-<script src="js/home.js"></script>
+    <p class="oina-copyright">&copy; 2026 PRAKTIP · Eskubide guztiak erreserbatuta</p>
+  </footer>
 </body>
 </html>

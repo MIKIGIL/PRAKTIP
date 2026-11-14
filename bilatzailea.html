@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="eu">
+<!-- DOKUMENTUAREN EGITURA: head (konfigurazioa) + body (eduki ikusgarria) -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRAKTIP · Praktiken bilatzaile adimenduna</title>
+  <!-- Favicon: icono.svg -->
+  <link rel="icon" type="image/svg+xml" href="irudiak/icono.svg">
+  <!-- Hoja de estilos externa compartida -->
+  <link rel="stylesheet" href="estiloak/estiloak.css">
+</head>
+<body>
+  <!-- GOIBURUA ETA NABIGAZIO MENUA: sticky, beti ikusgai -->
+  <header class="goiburua">
+    <nav class="menu-nagusia" aria-label="Nabigazio nagusia">
+      <!-- Ezkerra: logoa + orrialde nagusiak -->
+      <ul class="menu-ezkerra">
+        <li><a href="index.html"><img class="logoa-menua" src="irudiak/logo.svg" alt="PRAKTIP logoa - hasierara joan" width="228" height="50"></a></li>
+        <li><a class="menu-estekak" href="index.html">Hasiera</a></li>
+        <li><a class="menu-estekak" href="praktikak.html">Praktikak lortzen dizkizugu</a></li>
+        <li><a class="menu-estekak menu-aktiboa" href="bilatzailea.html" aria-current="page">Praktiken bilatzaile adimenduna</a></li>
+        <li><a class="menu-estekak" href="bloga.html">Bloga</a></li>
+      </ul>
+      <!-- Eskuina: saioa hasi + hizkuntzak -->
+      <ul class="menu-eskuina">
+        <li><a class="menu-estekak menu-saioa" href="saioa-hasi.html">Saioa hasi</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- BANNER NAGUSIA: la irudia CSSko atzealdea da (banner-bilatzailea); testua panel batean -->
+    <section class="banner-nagusia banner-bilatzailea" id="banner">
+      <div class="banner-edukia">
+        <div class="banner-testua">
+          <p class="banner-etiketa">Adimen artifiziala</p>
+          <h1>Utzi gure agente adimendunari praktikak aurkitzen</h1>
+          <p>Agenteak zure curriculuma, ikasketak eta kokapen geografikoa erabiltzen ditu bilaketa pertsonalizatzeko.</p>
+          <div class="botoi-multzoa"><a class="botoia botoia-zuria" href="#doako-proba">Probatu doan</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATALA: Harpidetza-planak -->
+    <section id="planak" class="atal atal-argia">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Planak</p>
+        <h2>Harpidetza-planak</h2>
+        <p>Prezioak hipotetikoak dira eta informazio gisa soilik erakusten dira. Harpidetza guztiak urtekoak dira.</p>
+        <div class="txartel-multzoa">
+          <article class="txartela txartela-plana">
+            <h3>Plana: Ikaslea</h3>
+            <p class="prezioa">19,88 € <span class="prezioa-txikia">/ urtea (hipotetikoa)</span></p>
+            <p><strong>Helburuko bezeroa:</strong> Lanbide Heziketako ikasleak</p>
+            <p><strong>Muga nagusiak:</strong></p><ul class="zerrenda"><li>Curriculum 1</li><li>Profil pertsonal 1</li><li>Banakako bilaketa</li></ul>
+            <p><strong>Barne dauden funtzioak:</strong></p><ul class="zerrenda"><li>Curriculuma sortu eta eguneratu</li><li>Eskaintza bateragarriak jaso</li><li>Eskaintzak gorde</li><li>IAren bidezko oinarrizko gomendioak</li></ul>
+          </article>
+          <article class="txartela txartela-plana txartela-nabarmena">
+            <h3>Plana: Irakaslea</h3>
+            <p class="prezioa">99,88 € <span class="prezioa-txikia">/ urtea (hipotetikoa)</span></p>
+            <p><strong>Helburuko bezeroa:</strong> Ikasleen praktikak kudeatzen dituzten irakasleak</p>
+            <p><strong>Muga nagusiak:</strong></p><ul class="zerrenda"><li>Hainbat ikasleren kudeaketa</li><li>Eskaeren jarraipena</li></ul>
+            <p><strong>Barne dauden funtzioak:</strong></p><ul class="zerrenda"><li>Ikasle planaren funtzioak</li><li>Hainbat ikasleren profilak kudeatu</li><li>Eskaintzak antolatu</li><li>Prozesuaren jarraipena</li><li>Taldearen panela</li></ul>
+          </article>
+          <article class="txartela txartela-plana">
+            <h3>Plana: Ikastetxea</h3>
+            <p class="prezioa">588,88 € <span class="prezioa-txikia">/ urtea (hipotetikoa)</span></p>
+            <p><strong>Helburuko bezeroa:</strong> Lanbide Heziketako ikastetxeak</p>
+            <p><strong>Muga nagusiak:</strong></p><ul class="zerrenda"><li>Hainbat talde eta irakasleren kudeaketa instituzionala</li></ul>
+            <p><strong>Barne dauden funtzioak:</strong></p><ul class="zerrenda"><li>Irakasle planaren funtzioak</li><li>Hainbat talde kudeatu</li><li>Ikastetxearen panel orokorra</li><li>Jarduera-txostenak</li><li>Enpresekin koordinazioa</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATALA: Aurkitu zuretzako egokienak diren praktikak -->
+    <section id="doako-proba" class="atal">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Doako proba</p>
+        <h2>Aurkitu zuretzako egokienak diren praktikak</h2>
+      <p class="atal-sarrera">Agente adimendunak zure curriculuma, ikasketak eta kokapen geografikoa erabiltzen ditu bilaketa pertsonalizatzeko.</p>
+        <div class="formulario-itxura">
+          <!-- Formulario estatikoa: ez da funtzionala -->
+          <div class="eremua"><p class="eremu-etiketa">1. Curriculuma igo</p><div class="eremu-igoera">PDF edo DOCX dokumentua hautatzeko eremuaren placeholder-a</div></div>
+          <div class="eremua"><p class="eremu-etiketa">2. Kokapen geografikoa</p><div class="aukera-multzoa"><span class="aukera">Euskadi osoa</span><span class="aukera">Araba</span><span class="aukera">Bizkaia</span><span class="aukera">Gipuzkoa</span></div></div>
+          <div class="eremua"><p class="eremu-etiketa">3. Egiten ari zaren ikasketak</p>
+            <div class="aukera-multzoa"><span class="aukera">Lanbide Heziketa</span><span class="aukera">Unibertsitateko gradua</span></div>
+            <p></p>
+            <div class="aukera-multzoa"><span class="aukera">Sistemas Microinformáticos y Redes</span><span class="aukera">Desarrollo de Aplicaciones Web</span><span class="aukera">Desarrollo de Aplicaciones Multiplataforma</span><span class="aukera">Administración y Finanzas</span><span class="aukera">Marketing y Publicidad</span><span class="aukera">Electricidad y Electrónica</span></div>
+          </div>
+        </div>
+        <div class="mezu-ez-erabilgarri"><p>Funtzio hau ez dago erabilgarri oraingoz</p></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTERRA: logoa, deskribapena, estekak, kontaktua, copyright -->
+  <footer class="oina">
+    <div class="oina-edukia">
+      <div class="oina-zutabea">
+        <img class="oina-logoa" src="irudiak/logo-claro.svg" alt="PRAKTIP logoa" width="192" height="42">
+        <p>PRAKTIP Lanbide Heziketako ikasleak eta praktikak eskaintzen dituzten enpresak lotzen dituen ikasenpresa da.</p>
+      </div>
+      <div class="oina-zutabea">
+        <p class="oina-izenburua">Orrialdeak</p>
+        <ul class="oina-zerrenda">
+          <li><a href="index.html">Hasiera</a></li>
+          <li><a href="praktikak.html">Praktikak lortzen dizkizugu</a></li>
+          <li><a href="bilatzailea.html">Praktiken bilatzaile adimenduna</a></li>
+          <li><a href="bloga.html">Bloga</a></li>
+          <li><a href="index.html#gjh">Gure GJH konpromezua</a></li>
+          <li><a href="index.html#eredu-ekonomikoa">Eredu ekonomikoa</a></li>
+        </ul>
+      </div>
+      <div class="oina-zutabea">
+        <p class="oina-izenburua">Kontaktua</p>
+        <!-- Placeholder-ak: gero benetako datuak jarri -->
+        <ul class="oina-zerrenda">
+          <li>[Posta elektronikoaren tokia]</li>
+          <li>[Telefonoaren tokia]</li>
+          <li><a href="index.html#kontaktua">Kontaktu-atala</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="oina-copyright">&copy; 2026 PRAKTIP · Eskubide guztiak erreserbatuta</p>
+  </footer>
+</body>
+</html>

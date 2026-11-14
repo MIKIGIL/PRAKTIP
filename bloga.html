@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="eu">
+<!-- DOKUMENTUAREN EGITURA: head (konfigurazioa) + body (eduki ikusgarria) -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRAKTIP · Bloga</title>
+  <!-- Favicon: icono.svg -->
+  <link rel="icon" type="image/svg+xml" href="irudiak/icono.svg">
+  <!-- Hoja de estilos externa compartida -->
+  <link rel="stylesheet" href="estiloak/estiloak.css">
+</head>
+<body>
+  <!-- GOIBURUA ETA NABIGAZIO MENUA: sticky, beti ikusgai -->
+  <header class="goiburua">
+    <nav class="menu-nagusia" aria-label="Nabigazio nagusia">
+      <!-- Ezkerra: logoa + orrialde nagusiak -->
+      <ul class="menu-ezkerra">
+        <li><a href="index.html"><img class="logoa-menua" src="irudiak/logo.svg" alt="PRAKTIP logoa - hasierara joan" width="228" height="50"></a></li>
+        <li><a class="menu-estekak" href="index.html">Hasiera</a></li>
+        <li><a class="menu-estekak" href="praktikak.html">Praktikak lortzen dizkizugu</a></li>
+        <li><a class="menu-estekak" href="bilatzailea.html">Praktiken bilatzaile adimenduna</a></li>
+        <li><a class="menu-estekak menu-aktiboa" href="bloga.html" aria-current="page">Bloga</a></li>
+      </ul>
+      <!-- Eskuina: saioa hasi + hizkuntzak -->
+      <ul class="menu-eskuina">
+        <li><a class="menu-estekak menu-saioa" href="saioa-hasi.html">Saioa hasi</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- BANNER NAGUSIA: la irudia CSSko atzealdea da (banner-bloga); testua panel batean -->
+    <section class="banner-nagusia banner-bloga" id="bloga-sarrera">
+      <div class="banner-edukia">
+        <div class="banner-testua">
+          <p class="banner-etiketa">Bloga</p>
+          <h1>PRAKTIPen bloga</h1>
+          <p>Aholkuak, ideiak eta berriak Lanbide Heziketako praktikei buruz, curriculumari eta lan-bilaketari buruz.</p>
+          <ul class="kategoria-zerrenda"><li class="blog-kategoria">Aholkuak</li><li class="blog-kategoria">Curriculuma</li><li class="blog-kategoria">Teknologia</li><li class="blog-kategoria">Hezkuntza</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATALA: Azken artikuluak -->
+    <section id="artikuluak" class="atal">
+      <div class="atal-edukia">
+        <p class="atal-etiketa">Artikuluak</p>
+        <h2>Azken artikuluak</h2>
+        <div class="txartel-multzoa">
+          <article class="txartela blog-txartela">
+            <img class="irudi-txartela" src="irudiak/blog1.jpg" alt="Artikuluaren irudia: Lanbide Heziketako praktikak aurkitzeko aholkuak" width="900" height="400">
+            <p><span class="blog-kategoria">Aholkuak</span></p>
+            <h3>Lanbide Heziketako praktikak aurkitzeko aholkuak</h3>
+            <p class="blog-data">2026ko urtarrilaren 12a (data fikziozkoa)</p>
+            <p>Hasi goiz, zehaztu zer bilatzen duzun eta erabili eskura dituzun bideak.</p>
+          </article>
+          <article class="txartela blog-txartela">
+            <img class="irudi-txartela" src="irudiak/blog2.jpg" alt="Artikuluaren irudia: Nola prestatu curriculuma lehen lan-esperientzia lortzeko" width="900" height="400">
+            <p><span class="blog-kategoria">Curriculuma</span></p>
+            <h3>Nola prestatu curriculuma lehen lan-esperientzia lortzeko</h3>
+            <p class="blog-data">2026ko otsailaren 3a (data fikziozkoa)</p>
+            <p>Egitura garbia, gaitasunak eta prestakuntza: zer jarri eta zer utzi kanpoan.</p>
+          </article>
+          <article class="txartela blog-txartela">
+            <img class="irudi-txartela" src="irudiak/blog3.jpg" alt="Artikuluaren irudia: Adimen artifiziala lan-bilaketan" width="900" height="400">
+            <p><span class="blog-kategoria">Teknologia</span></p>
+            <h3>Adimen artifiziala lan-bilaketan</h3>
+            <p class="blog-data">2026ko martxoaren 18a (data fikziozkoa)</p>
+            <p>IAk nola laguntzen duen eskaintzak aurkitzen eta mezu pertsonalizatuak prestatzen.</p>
+          </article>
+          <article class="txartela blog-txartela">
+            <img class="irudi-txartela" src="irudiak/blog4.jpg" alt="Artikuluaren irudia: Praktiken garrantzia Lanbide Heziketan" width="900" height="400">
+            <p><span class="blog-kategoria">Hezkuntza</span></p>
+            <h3>Praktiken garrantzia Lanbide Heziketan</h3>
+            <p class="blog-data">2026ko apirilaren 9a (data fikziozkoa)</p>
+            <p>Praktikak ikasketak eta lan-mundua lotzen dituen zubia dira.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATALA: Segi PRAKTIP ezagutzen -->
+    <section id="blog-estekak" class="atal atal-iluna">
+      <div class="atal-edukia">
+        <h2>Segi PRAKTIP ezagutzen</h2>
+        <div class="botoi-multzoa"><a class="botoia botoia-zuria" href="bilatzailea.html#doako-proba">Probatu doan</a><a class="botoia botoia-zuria" href="praktikak.html#erreserba">Antolatu doako bilera bat</a></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTERRA: logoa, deskribapena, estekak, kontaktua, copyright -->
+  <footer class="oina">
+    <div class="oina-edukia">
+      <div class="oina-zutabea">
+        <img class="oina-logoa" src="irudiak/logo-claro.svg" alt="PRAKTIP logoa" width="192" height="42">
+        <p>PRAKTIP Lanbide Heziketako ikasleak eta praktikak eskaintzen dituzten enpresak lotzen dituen ikasenpresa da.</p>
+      </div>
+      <div class="oina-zutabea">
+        <p class="oina-izenburua">Orrialdeak</p>
+        <ul class="oina-zerrenda">
+          <li><a href="index.html">Hasiera</a></li>
+          <li><a href="praktikak.html">Praktikak lortzen dizkizugu</a></li>
+          <li><a href="bilatzailea.html">Praktiken bilatzaile adimenduna</a></li>
+          <li><a href="bloga.html">Bloga</a></li>
+          <li><a href="index.html#gjh">Gure GJH konpromezua</a></li>
+          <li><a href="index.html#eredu-ekonomikoa">Eredu ekonomikoa</a></li>
+        </ul>
+      </div>
+      <div class="oina-zutabea">
+        <p class="oina-izenburua">Kontaktua</p>
+        <!-- Placeholder-ak: gero benetako datuak jarri -->
+        <ul class="oina-zerrenda">
+          <li>[Posta elektronikoaren tokia]</li>
+          <li>[Telefonoaren tokia]</li>
+          <li><a href="index.html#kontaktua">Kontaktu-atala</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="oina-copyright">&copy; 2026 PRAKTIP · Eskubide guztiak erreserbatuta</p>
+  </footer>
+</body>
+</html>
