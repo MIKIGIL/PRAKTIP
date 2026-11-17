@@ -16,7 +16,7 @@
     <nav class="menu-nagusia" aria-label="Nabigazio nagusia">
       <!-- Ezkerra: logoa + orrialde nagusiak -->
       <ul class="menu-ezkerra">
-        <li><a href="index.html"><img class="logoa-menua" src="irudiak/logo.svg" alt="PRAKTIP logoa - hasierara joan" width="228" height="50"></a></li>
+        <li><a href="index.html#banner"><img class="logoa-menua" src="irudiak/logo.svg" alt="PRAKTIP logoa - hasierara joan" width="228" height="50"></a></li>
         <li><a class="menu-estekak" href="index.html">Hasiera</a></li>
         <li><a class="menu-estekak menu-aktiboa" href="praktikak.html" aria-current="page">Praktikak lortzen dizkizugu</a></li>
         <li><a class="menu-estekak" href="bilatzailea.html">Praktiken bilatzaile adimenduna</a></li>
@@ -104,10 +104,10 @@
           <li class="egutegi-eguna egutegi-astekoa"><abbr title="Ostirala">O</abbr></li>
           <li class="egutegi-eguna egutegi-astekoa"><abbr title="Larunbata">L</abbr></li>
           <li class="egutegi-eguna egutegi-astekoa"><abbr title="Igandea">I</abbr></li>
-          <li class="egutegi-eguna egutegi-hutsa"></li>
-          <li class="egutegi-eguna egutegi-hutsa"></li>
-          <li class="egutegi-eguna egutegi-hutsa"></li>
-          <li class="egutegi-eguna egutegi-hutsa"></li>
+          <li class="egutegi-eguna egutegi-hutsa" aria-hidden="true"></li>
+          <li class="egutegi-eguna egutegi-hutsa" aria-hidden="true"></li>
+          <li class="egutegi-eguna egutegi-hutsa" aria-hidden="true"></li>
+          <li class="egutegi-eguna egutegi-hutsa" aria-hidden="true"></li>
           <li class="egutegi-eguna egutegi-ezin">1</li>
           <li class="egutegi-eguna egutegi-ezin">2</li>
           <li class="egutegi-eguna egutegi-ezin">3</li>
@@ -140,7 +140,8 @@
           <li class="egutegi-eguna egutegi-ezin">30</li>
           <li class="egutegi-eguna egutegi-ezin">31</li>
               </ul>
-              <p><strong>Ordutegi posibleak (adibidea):</strong></p>
+              <p class="egutegi-ohar">Ertz urdinez markatutako egunak eskuragarri daude; marratuta daudenak ez daude eskuragarri.</p>
+              <h4>Ordutegi posibleak (adibidea)</h4>
               <ul class="ordutegi-multzoa"><li class="ordutegia">09:30</li><li class="ordutegia">11:00</li><li class="ordutegia">12:30</li><li class="ordutegia">16:00</li></ul>
               <p>Egutegia erakusgarria da: ez da benetako erreserba-daturik.</p>
             </div>
@@ -150,12 +151,12 @@
             <div class="formulario-itxura">
               <h3>Bileraren datuak</h3>
               <p>Formularioaren diseinua erakusteko adibidea da; ez da daturik bidaltzen edo gordetzen.</p>
-        <div class="eremua"><p class="eremu-etiketa">Izena</p><div class="eremu-kutxa">Zure izena</div></div>
-        <div class="eremua"><p class="eremu-etiketa">Abizenak</p><div class="eremu-kutxa">Zure abizenak</div></div>
-        <div class="eremua"><p class="eremu-etiketa">Helbide elektronikoa</p><div class="eremu-kutxa">izena@adibidea.eus</div></div>
-        <div class="eremua"><p class="eremu-etiketa">Ikastetxearen edo enpresaren izena</p><div class="eremu-kutxa">Erakundearen izena</div></div>
-              <div class="eremua"><p class="eremu-etiketa">Erabiltzaile mota</p><div class="aukera-multzoa"><span class="aukera">Ikaslea</span><span class="aukera">Irakaslea</span><span class="aukera">Ikastetxea</span></div></div>
-              <div class="eremua"><p class="eremu-etiketa">Bileraren arrazoia</p><div class="eremu-kutxa eremu-handia">Azaldu zertarako nahi duzun bilera</div></div>
+        <dl class="eremua"><dt class="eremu-etiketa">Izena</dt><dd class="eremu-kutxa">Zure izena</dd></dl>
+        <dl class="eremua"><dt class="eremu-etiketa">Abizenak</dt><dd class="eremu-kutxa">Zure abizenak</dd></dl>
+        <dl class="eremua"><dt class="eremu-etiketa">Helbide elektronikoa</dt><dd class="eremu-kutxa">izena@adibidea.eus</dd></dl>
+        <dl class="eremua"><dt class="eremu-etiketa">Ikastetxearen edo enpresaren izena</dt><dd class="eremu-kutxa">Erakundearen izena</dd></dl>
+              <dl class="eremua"><dt class="eremu-etiketa">Erabiltzaile mota</dt><dd class="aukera-multzoa"><span class="aukera">Ikaslea</span><span class="aukera">Irakaslea</span><span class="aukera">Ikastetxea</span></dd></dl>
+              <dl class="eremua"><dt class="eremu-etiketa">Bileraren arrazoia</dt><dd class="eremu-kutxa eremu-handia">Azaldu zertarako nahi duzun bilera</dd></dl>
               <a class="botoia botoia-nagusia" href="index.html#kontaktua">Eskatu bilera bat</a>
             </div>
           </div>
